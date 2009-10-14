@@ -26,7 +26,7 @@ public class Server {
      * @throws Exception 
      */
     public static void main(String[] args) throws Exception {
-//      Create the server
+    	// Create the server
         log.info("starting opensearch server...");
         
         HttpServer server=new HttpServer();
@@ -34,7 +34,6 @@ public class Server {
         // Create a port listener
         SocketListener listener=new SocketListener();
         listener.setPort(OpensearchConfig.getInstance().getInt(OpensearchConfig.SERVER_PORT, 80));
-        listener.setPort(80);
         server.addListener(listener);
 
         // Create a context 
@@ -48,7 +47,8 @@ public class Server {
         
         // Map a servlet onto the container
         servlets.setAutoInitializeServlets(true);
-        servlets.addServlet("OpenSearch","/query","de.ingrid.server.opensearch.servlet.OpensearchServlet");
+        servlets.addServlet("OpenSearch","/query","de.ingrid.server.opensearch.servlet.OpensearchServerServlet");
+        // a file conf/descriptor.xml is expected!
         servlets.addServlet("ProvideDescription","/descriptor","de.ingrid.opensearch.servlet.ProvideDescriptorServlet");
         servlets.initialize(context);
 
