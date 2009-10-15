@@ -50,7 +50,19 @@ public class OpensearchServerServlet extends HttpServlet {
 
         RequestWrapper reqWrapper = new RequestWrapper(request);
 
+        // set content Type
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/xml");
+        
         OSSearcher searcher = getSearcher();//new OSSearcher();
+        
+        if (osSearcher == null) {
+        	// redirect or show error page or empty result
+        	PrintWriter pout = response.getWriter();
+            pout.write("Error: no index file found");
+        	return;
+        }
+        
         int page = reqWrapper.getRequestedPage();
         int hitsPerPage = reqWrapper.getHitsPerPage();
         if (page <= 0)
@@ -65,13 +77,8 @@ public class OpensearchServerServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		// transform IngridHit to XML
-        request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/xml");
-        
         // transform hits into target format
         OpensearchMapper mapper = (new SpringUtil("spring/spring.xml")).getBean("mapper", OpensearchMapper.class);
-        //OpensearchMapper mapper = new IgcToXmlMapper();
         HashMap<String, Object> parameter = new HashMap<String, Object>();
         parameter.put(OpensearchMapper.REQUEST_WRAPPER, reqWrapper);
         parameter.put(OpensearchMapper.HTTP_SERVLET_REQUEST, request);
@@ -107,11 +114,12 @@ public class OpensearchServerServlet extends HttpServlet {
 	    		osSearcher = new OSSearcher();
 	    		// get plugDescription info
 	    		//osSearcher.configure(PlugServer.getPlugDescription());
-	    		osSearcher.configure(PlugServer.getPlugDescription("src/test/resources/plugdescription.xml"));
+	    		//osSearcher.configure(PlugServer.getPlugDescription("src/test/resources/plugdescription.xml"));
+	    		osSearcher.configure(PlugServer.getPlugDescription("conf/plugdescription.xml"));
     		}
     	} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("IOException ocurred: " + e.getMessage());
+			osSearcher = null;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -22,6 +22,20 @@
     <dependency>
       <groupId>de.ingrid</groupId>
       <artifactId>ingrid-interface-opensearch</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>de.ingrid</groupId>
+          <artifactId>ingrid-iplug-admin-step1</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>de.ingrid</groupId>
+          <artifactId>ingrid-iplug-admin-step1-sns</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>de.ingrid</groupId>
+          <artifactId>ingrid-iplug-admin-step2-tamino</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>de.ingrid</groupId>

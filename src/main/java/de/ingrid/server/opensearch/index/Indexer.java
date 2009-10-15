@@ -263,7 +263,11 @@ public class Indexer {
         Construct construct;
         PlugDescription plugDescription;
         try {
-            plugDescription = PlugServer.getPlugDescription(args[0]);
+        	if (args.length > 0) {
+        		plugDescription = PlugServer.getPlugDescription(args[0]);
+        	} else {
+        		plugDescription = PlugServer.getPlugDescription();
+        	}
             construct = AbstractSearcher.getConstruct(plugDescription);
         } catch (Exception e) {
         	log.error(e.getMessage(), e);
