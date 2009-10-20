@@ -31,7 +31,7 @@ public class ContextListener implements ServletContextListener {
 
         String plugDescription = System.getProperty("plugDescription");
         if (plugDescription == null) {
-            plugDescription = "plugdescription.xml";
+            plugDescription = "conf/plugdescription.xml";
             System.setProperty("plugDescription", plugDescription);
             LOG.warn("plug description is not defined. using default: " + plugDescription);
         }
