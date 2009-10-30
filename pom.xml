@@ -50,6 +50,23 @@
           <groupId>de.ingrid</groupId>
           <artifactId>ingrid-ibus</artifactId>
         </exclusion>
+		<exclusion>
+			<groupId>tomcat</groupId>
+			<artifactId>jasper-compiler</artifactId>
+		</exclusion>
+		<exclusion>
+			<groupId>tomcat</groupId>
+			<artifactId>jasper-runtime</artifactId>
+		</exclusion>
+		<exclusion>
+			<groupId>jetty</groupId>
+			<artifactId>servlet-api</artifactId>
+		</exclusion>
+		<exclusion>
+			<groupId>jetty</groupId>
+			<artifactId>org.mortbay.jetty</artifactId>
+		</exclusion>
+        
       </exclusions>
     </dependency>
    <dependency>
