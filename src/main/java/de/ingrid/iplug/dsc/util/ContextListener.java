@@ -39,6 +39,7 @@ public class ContextListener implements ServletContextListener {
         try {
             final File file = new File(plugDescription);
             if (!file.exists()) {
+                file.mkdirs();
                 file.createNewFile();
                 final PlugDescription pd = new PlugDescription();
                 final XMLSerializer serializer = new XMLSerializer();

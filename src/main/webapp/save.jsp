@@ -48,5 +48,5 @@ if (null == description) {
 } else {
     serializer.serialize(description,pd_file);
 }
-response.sendRedirect(response.encodeRedirectURL("finish.jsp"));
+response.sendRedirect(response.encodeRedirectURL("indexDatabaseQuestion.jsp"));
 %>
