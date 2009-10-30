@@ -7,7 +7,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>de.ingrid</groupId>
   <artifactId>ingrid-server-opensearch</artifactId>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
   <version>1.0.0-SNAPSHOT</version>
   <name>Ingrid Server OpenSearch</name>
   <scm>
