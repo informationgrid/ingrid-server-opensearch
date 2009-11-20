@@ -3,8 +3,9 @@
         Opensearch Server Installation Script
     </description>
 	<!-- set global properties for this build -->
-	<property name="iPlugName" 			value="${project.artifactId}-${project.version}"/>
-	<property name="xml-communication" 	value="${installDir}/conf/communication.xml"/>
+	<property name="iPlugName" 			   value="${project.artifactId}-${project.version}"/>
+	<property name="xml-communication" 	   value="${installDir}/conf/communication.xml"/>
+	<property name="opensearch-properties" value="${installDir}/conf/ingrid-opensearch.properties"/>
 	
 	<target name="extract" description="Extract all files to the installation directory.">
 		<unzip src="${antinstaller.jar}" dest="${installDir}">
@@ -16,6 +17,18 @@
 		<move toDir="${installDir}">
 			<fileset dir="${installDir}/${iPlugName}"/>
 		</move>
+    
+    <!-- logs-dir needs to be created since server will complain about a missing one later -->
+    <mkdir dir="${installDir}/logs"/>
+	</target>
+	
+	<target name="config" description="Configure the file ingrid-opensearch.properties">
+		<echo>Schreibe OpenSearch Konfiguration in ingrid-opensearch.properties</echo>
+    <replace file="${opensearch-properties}" token="@LOCAL_SERVER_PORT@"    value="${localServerPort}"/>
+    <replace file="${opensearch-properties}" token="@MAX_REQUESTED_HITS@"   value="${maxRequestedHits}"/>
+    <replace file="${opensearch-properties}" token="@PROXY_URL@"            value="http://${externalInterfaceHost}:${externalInterfacePort}/${externalInterfacePath}"/>
+    <replace file="${opensearch-properties}" token="@METADATA_DETAILS_URL@" value="${metadataDetailsUrl}"/>
+    <replace file="${opensearch-properties}" token="@ENABLE_CACHING@"       value="${enableCaching}"/>		        
 	</target>
 	
 	<target name="startIPlug">
@@ -29,18 +42,12 @@ Weiteres Vorgehen
 Gehen Sie ins Verzeichnis:
 ${installDir}
 und rufen sie von der Kommandozeile folgendes auf
-"sh admin.sh", um im Webbrowser das iPlug unter
-der folgenden Adresse "http://localhost:8082/step1"
+"sh start.sh start", um im Webbrowser das iPlug unter
+der folgenden Adresse "http://localhost:8088"
 zu konfigurieren. Anstelle von localhost koennen Sie
 auch die IP-Adresse des Computers eingeben!
 Bitte lesen Sie bzgl. der Administration die Kapitel unter
-"http://www.kst.portalu.de/wiki/index.php/Allgemeines_zu_den_iPlugs".
-
-Danach beenden Sie den Prozess wieder (Strg+C) und
-rufen "sh start.sh start" auf, um das iPlug zu starten.
-
-Bevor das iPlug benutzt werden kann, muss es in der iBus-
-Administration (im Portal) eingeschaltet werden.
+"http://www.kst.portalu.de/wiki/index.php/OpenSearch-Server".
 
 Weitere Informationen entnehmen Sie bitte dem
 Online-Handbuch unter 

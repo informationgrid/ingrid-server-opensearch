@@ -55,7 +55,7 @@ public class OpensearchServerServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/xml");
 
-        final OSSearcher searcher = getSearcher();//new OSSearcher();
+        final OSSearcher searcher = getSearcher();
 
         if (osSearcher == null) {
         	// redirect or show error page or empty result
@@ -116,16 +116,14 @@ public class OpensearchServerServlet extends HttpServlet {
     		if (osSearcher == null) {
 	    		osSearcher = new OSSearcher();
 	    		// get plugDescription info
-	    		//osSearcher.configure(PlugServer.getPlugDescription());
-	    		//osSearcher.configure(PlugServer.getPlugDescription("src/test/resources/plugdescription.xml"));
                 osSearcher.configure(PlugServer.getPlugDescription("conf/plugdescription.xml"));
     		}
     	} catch (final IOException e) {
 			log.error("IOException ocurred: " + e.getMessage());
 			osSearcher = null;
 		} catch (final Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		    log.error("Exception ocurred: " + e.getMessage());
+			osSearcher = null;
 		}
     	return osSearcher;
     }

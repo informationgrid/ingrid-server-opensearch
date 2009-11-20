@@ -8,24 +8,17 @@ package de.ingrid.server.opensearch.index;
 import java.io.File;
 import java.io.IOException;
 
-import net.sf.ehcache.Cache;
-
-import org.apache.lucene.document.Document;
-import org.apache.lucene.search.Hits;
 import org.apache.lucene.search.IndexSearcher;
 
 import de.ingrid.iplug.dsc.index.AbstractSearcher;
 import de.ingrid.iplug.dsc.index.RecordLoader;
 import de.ingrid.iplug.scheduler.SchedulingService;
-import de.ingrid.utils.IngridDocument;
 import de.ingrid.utils.IngridHit;
 import de.ingrid.utils.IngridHitDetail;
 import de.ingrid.utils.IngridHits;
-import de.ingrid.utils.IngridHitsEnrichmentFactory;
 import de.ingrid.utils.PlugDescription;
 import de.ingrid.utils.dsc.Record;
 import de.ingrid.utils.processor.ProcessorPipe;
-import de.ingrid.utils.processor.ProcessorPipeFactory;
 import de.ingrid.utils.query.IngridQuery;
 
 /**
@@ -39,8 +32,6 @@ public class OSSearcher extends AbstractSearcher {
 
 	private PlugDescription fPlugDescription;
 
-	private Cache cache = null;
-	
 	private ProcessorPipe _processorPipe = new ProcessorPipe();
 	
 
@@ -70,29 +61,6 @@ public class OSSearcher extends AbstractSearcher {
 		}
 		this.fSearcher = new IndexSearcher(new File(plugDescription
 				.getWorkinDirectory(), "index").getAbsolutePath());
-		/*this.fDetailer = new RecordLoader();
-		this.fScheduler = new SchedulingService(new File(plugDescription
-				.getWorkinDirectory(), "jobstore"));
-		ProcessorPipeFactory processorPipeFactory = new ProcessorPipeFactory(
-				plugDescription);
-		_processorPipe = processorPipeFactory.getProcessorPipe();
-		IngridHitsEnrichmentFactory factory = new IngridHitsEnrichmentFactory();
-		factory.register(new CswDscIdentifierEnrichment());
-		
-		this.mapper = SimpleSpringBeanFactory.INSTANCE.getBean(ConfigurationKeys.CSW_MAPPER, DocumentMapper.class);
-		if (this.mapper == null) {
-			throw new RuntimeException("DSCSearcher is not configured properly. "+
-					"Bean '"+ConfigurationKeys.CSW_MAPPER+"' is missing in spring configuration.");
-		}
-
-
-		this.cache = SimpleSpringBeanFactory.INSTANCE.getBean(ConfigurationKeys.CSW_CACHE, Cache.class);
-		if (this.cache == null) {
-			throw new RuntimeException("DSCSearcher is not configured properly. "+
-					"Bean '"+ConfigurationKeys.CSW_CACHE+"' is missing in spring configuration.");
-		} else {
-			this.cache.configure(SimpleSpringBeanFactory.INSTANCE.getBean(ConfigurationKeys.CSW_FACTORY, CSWFactory.class));
-		}*/
 	}
 
 	public IngridHits search(IngridQuery query, int start, int length)
@@ -112,7 +80,7 @@ public class OSSearcher extends AbstractSearcher {
 	public IngridHits searchAndDetails(IngridQuery query, int start, int length)
 			throws Exception {
 
-    	_processorPipe.preProcess(query);
+    	//_processorPipe.preProcess(query);
 		
 		IngridHits ingridHits = search(query, false, start, length);
     	
@@ -121,10 +89,8 @@ public class OSSearcher extends AbstractSearcher {
 		for (int i=0; i<details.length; i++) {
 			ingridHits.getHits()[i].setHitDetail(details[i]);
 		}
-		
     	
-		_processorPipe.postProcess(query, ingridHits.getHits());
-
+		//_processorPipe.postProcess(query, ingridHits.getHits());
 		
 		return ingridHits;
 	}
@@ -149,8 +115,9 @@ public class OSSearcher extends AbstractSearcher {
 
 	@Override
 	public Record getRecord(IngridHit arg0) throws IOException, Exception {
-		// TODO Auto-generated method stub
-		return null;
+	    log.debug("Returning an empty record, but it shouldn't be called here at all");
+		Record rec = new Record();
+		return rec;
 	}
 
 	

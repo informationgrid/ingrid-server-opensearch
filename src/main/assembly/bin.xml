@@ -10,6 +10,10 @@
       <directory>src/main/release/conf</directory>
       <outputDirectory>${project.build.finalName}/conf</outputDirectory>
     </fileSet>
+    <!--<fileSet>
+      <directory>target/${project.build.finalName}</directory>
+      <outputDirectory>${project.build.finalName}/webapp</outputDirectory>
+    </fileSet>-->
     <fileSet>
       <directory>src/main/release/scripts</directory>
       <outputDirectory>${project.build.finalName}/</outputDirectory>
@@ -20,15 +24,23 @@
       <filtered>true</filtered>
     </fileSet>
     <fileSet>
+      <directory>target/jetty-6.1.14</directory>
+      <outputDirectory>${project.build.finalName}/jetty</outputDirectory>
+    </fileSet>
+    <fileSet>
       <directory>target/installer</directory>
       <outputDirectory>/</outputDirectory>
     </fileSet>
+    <!--<fileSet>
+      <directory>target/jetty-6.1.14</directory>
+      <outputDirectory>${project.artifactId}-${project.version}/</outputDirectory>
+    </fileSet>-->
     <fileSet>
       <directory>target/site</directory>
       <outputDirectory>${project.build.finalName}/doc</outputDirectory>
     </fileSet>
   </fileSets>
-  <dependencySets>
+  <!--<dependencySets>
     <dependencySet>
       <outputDirectory>${project.build.finalName}/lib</outputDirectory>
       <unpack>false</unpack>
@@ -36,7 +48,8 @@
       <excludes>
         <exclude>de.ingrid:ingrid-installer</exclude>
         <exclude>quartz:quartz</exclude>
+        <exclude>de.ingrid:ingrid-server-opensearch</exclude>
       </excludes>
     </dependencySet>
-  </dependencySets>
+  </dependencySets>-->
 </assembly>
