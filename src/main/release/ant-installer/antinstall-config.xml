@@ -26,10 +26,10 @@
     <page
             type        ="input"
             name        ="componentOptions"
-            displayText ="Einstellungen fuer die OpenSearch Schnittstelle">
+            displayText ="Einstellungen fuer den OpenSearch-Server">
             
             <comment displayText="" explanatoryText="Lokaler Port, unter dem der OpenSearch Server laufen soll. Lokal kann der OpenSearch Server dann per http://localhost:PORT/query?q=... aufgerufen werden."/>           
-            <text property="localServerPort" displayText="Lokaler Port für die Schnittstelle:" defaultValue="8083"/>
+            <text property="localServerPort" displayText="Lokaler Port für den Server:" defaultValue="8083"/>
             <comment displayText="" explanatoryText="Anzahl der Ergebnisse, die pro OpenSearch Anfrage zurückgegeben werden. Diese Eigenschaft begrenzt die Belastung des Systems."/>
             <text property="maxRequestedHits" displayText="max. Ergebnisse pro Anfrage:" defaultValue="100"/>
     </page>
@@ -37,7 +37,7 @@
     <page
             type        ="input"
             name        ="componentOptions2"
-            displayText ="Einstellungen fuer die OpenSearch Schnittstelle (2)">
+            displayText ="Einstellungen fuer den OpenSearch-Server (2)">
             
             <comment displayText="" explanatoryText="Um Detaildaten von IGC-Metadaten anzuzeigen, kann hier eine Basis-Url hinterlegt werden. Links für IGC Metadaten Details werden dann über diese URL realisiert."/>
             <text property="metadataDetailsUrl"   displayText="URL für IGC Detaildaten:"   defaultValue="http://portalu.de/ingrid-portal/portal/search-detail.psml"/>
@@ -48,13 +48,22 @@
     <page
             type        ="input"
             name        ="componentOptions3"
-            displayText ="Proxy-Einstellungen fuer die OpenSearch Schnittstelle"
-            target      ="config">
+            displayText ="Proxy-Einstellungen fuer den OpenSearch-Server">
 
-            <comment displayText="" explanatoryText="Die externen Einstellungen werden in den Ergebnissen der Schnittstelle verwendet, um den externen Zugriff auf die Schnittstelle zu beschreiben. Die Werte können geändert werden, wenn z.B. eine Proxy-Weiterleitung zum OpenSearch Server eingerichtet wurde."/>          
+            <comment displayText="" explanatoryText="Die externen Einstellungen werden in den Ergebnissen des Servers verwendet, um den externen Zugriff auf den Server zu beschreiben. Die Werte können geändert werden, wenn z.B. eine Proxy-Weiterleitung zum OpenSearch Server eingerichtet wurde."/>          
             <text property="externalInterfaceHost"   displayText="Externer Servername:"   defaultValue="127.0.0.1"/>
             <text property="externalInterfacePort"   displayText="Externer Port:"   defaultValue="80"/>
             <text property="externalInterfacePath"   displayText="Externer Pfad:"   defaultValue="opensearch"/>
+    </page>
+    
+    <page
+            type        ="input"
+            name        ="componentOptions4"
+            displayText ="Passwort für die Administrationsoberfläche"
+            target      ="config">
+
+            <comment displayText="" explanatoryText="Hier wird das Passwort für den Zugang zur Administrationsoberfläche gesetzt. Dieses kann später in der Datei 'plugdescription.xml' im conf-Verzeichnis geändert werden."/>
+            <text property="adminPassword"   displayText="Administrationspasswort:"   defaultValue=""/>
     </page>
 
 	<!--  type="input" shows a list of editable options for the installer -->
@@ -83,7 +92,7 @@
 			name		="progress"
 			displayText	="Installationsfortschritt"
 			showTargets	="true"
-			target		="startIPlug">
+			target		="info">
 	</page>
 </installer>
 

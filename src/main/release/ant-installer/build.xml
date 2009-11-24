@@ -3,9 +3,10 @@
         Opensearch Server Installation Script
     </description>
 	<!-- set global properties for this build -->
-	<property name="iPlugName" 			   value="${project.artifactId}-${project.version}"/>
+	<property name="iPlugName" 			       value="${project.artifactId}-${project.version}"/>
 	<property name="xml-communication" 	   value="${installDir}/conf/communication.xml"/>
 	<property name="opensearch-properties" value="${installDir}/conf/ingrid-opensearch.properties"/>
+  <property name="plugdescription"       value="${installDir}/conf/plugdescription.xml"/>
 	
 	<target name="extract" description="Extract all files to the installation directory.">
 		<unzip src="${antinstaller.jar}" dest="${installDir}">
@@ -28,10 +29,12 @@
     <replace file="${opensearch-properties}" token="@MAX_REQUESTED_HITS@"   value="${maxRequestedHits}"/>
     <replace file="${opensearch-properties}" token="@PROXY_URL@"            value="http://${externalInterfaceHost}:${externalInterfacePort}/${externalInterfacePath}"/>
     <replace file="${opensearch-properties}" token="@METADATA_DETAILS_URL@" value="${metadataDetailsUrl}"/>
-    <replace file="${opensearch-properties}" token="@ENABLE_CACHING@"       value="${enableCaching}"/>		        
+    <replace file="${opensearch-properties}" token="@ENABLE_CACHING@"       value="${enableCaching}"/>
+    
+    <replace file="${plugdescription}" token="@PASSWORD@"                   value="${adminPassword}"/>
 	</target>
 	
-	<target name="startIPlug">
+	<target name="info">
 		<echo>
 =================
 Weiteres Vorgehen
