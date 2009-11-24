@@ -44,7 +44,7 @@ if (request.getParameter("process")!=null) {
 }
 %>
 <center>
-	<div class="headline"><br />
+	<div class="headline"><a class="logout" href="login.jsp?logout=true">abmelden</a><br />
 		Filter hinzuf&#x00FC;gen<br /><br />
 		<span class="byline">
 		Zus&#x00E4;tzlich zu den Relationen k&#x00F6;nnen Sie Filter definieren, die das Ergebnis auf Felder beschr&#x00E4;nken, die einen definierten Wert haben.

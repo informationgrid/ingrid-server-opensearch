@@ -43,7 +43,7 @@
 	}
 %>
 <center>
-	<div class="headline"><br />
+	<div class="headline"><a class="logout" href="login.jsp?logout=true">abmelden</a><br />
 		Mapping-&#x00DC;bersicht
 		<br /><br />
 		<span class="byline">		

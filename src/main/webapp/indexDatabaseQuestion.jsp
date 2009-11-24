@@ -10,7 +10,7 @@
 </head>
 <body>
 <center>
-		<div class="headline">
+		<div class="headline"><a class="logout" href="login.jsp?logout=true">abmelden</a>
 			<br />Indizierung der Daten<br /><br /><br />
 		</div>
 			<br />

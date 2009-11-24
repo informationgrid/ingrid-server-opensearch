@@ -23,7 +23,7 @@
 </head>
 <body>
 <center>
-	<div class="headline"><br />
+	<div class="headline"><a class="logout" href="login.jsp?logout=true">abmelden</a><br />
 		Konfiguration abgeschlossen
 		<br /><br />
 		<span class="byline">

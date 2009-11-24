@@ -15,7 +15,7 @@
 </head>
 <body>
 <center>
-	<div class="headline"><br />
+	<div class="headline"><a class="logout" href="login.jsp?logout=true">abmelden</a><br />
 		Schema ausw&#x00E4;hlen<br /><br />	
 	</div>
 

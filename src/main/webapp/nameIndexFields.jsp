@@ -114,7 +114,7 @@
 		}
 	%>
 	
-	<div class="headline"><br />
+	<div class="headline"><a class="logout" href="login.jsp?logout=true">abmelden</a><br />
 		Index-Feldnamen vergeben
 		<br /><br />
 		<span class="byline">

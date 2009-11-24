@@ -32,7 +32,7 @@ if (request.getParameter("columnId") != null) {
 </head>
 <body>
 <center>
-	<div class="headline"><br />
+	<div class="headline"><a class="logout" href="login.jsp?logout=true">abmelden</a><br />
 		Mapping Startpunkt<br /><br />
 		<span class="byline">Bitte w&#x00E4;hlen Sie die Tabellenspalte, die den eindeutigen Schl&#x00FC;ssel Ihrer Daten enth&#x00E4;lt.<br /> 
 		</span>

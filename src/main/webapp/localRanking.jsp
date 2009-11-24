@@ -37,7 +37,7 @@ if(request.getParameter("process") != null) {
 	}
 %>
 <center>
-	<div class="headline"><br />
+	<div class="headline"><a class="logout" href="login.jsp?logout=true">abmelden</a><br />
 		Ranking<br /><br />
 		<span class="byline">
 		Wenn Sie nicht w&#x00FC;nschen, dass die Inhalte aller Indexfelder w&#x00E4;hrend der Suche gleich gewichtet werden, k&#x00F6;nnen Sie die Rankingfaktoren f&#x00FC;r einzelne Felder anpassen.<br />

@@ -13,7 +13,7 @@
 </head>
 <body>
 <center>
-	<div class="headline"><br />
+	<div class="headline"><a class="logout" href="login.jsp?logout=true">abmelden</a><br />
 		Felder f&#x00FC;r den Index ausw&#x00E4;hlen
 		<br /><br />
 		<span class="byline">

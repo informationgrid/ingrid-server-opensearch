@@ -54,7 +54,7 @@ if(WebUtil.getParameter(request, "submitted", null)==null && description.get("de
 </head>
 <body>
 <center>
-	<div class="headline"><br />
+	<div class="headline"><a class="logout" href="login.jsp?logout=true">abmelden</a><br />
 		Detailansicht w&#x00E4;hlen
 		<br /><br />
 		<span class="byline">

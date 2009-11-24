@@ -148,7 +148,7 @@ public static String MAPPING_ERROR = "mappingError";
 </head>
 <body>
 	<center>
-	<div class="headline"><br />
+	<div class="headline"><a class="logout" href="login.jsp?logout=true">abmelden</a><br />
 		Datenbankverbindung einrichten
 		<br /><br />
 		<span class="byline">

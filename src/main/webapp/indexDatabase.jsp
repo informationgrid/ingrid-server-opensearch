@@ -74,7 +74,7 @@ if(fIndexRunner!=null && fIndexRunner.isIndexing()){
 </head>
 <body>
 <center>
-	<div class="headline">
+	<div class="headline"><a class="logout" href="login.jsp?logout=true">abmelden</a>
 		<br />Indizierung der Daten<br /><br />
 		<span class="byline">Die Datenbank wird indiziert. Abh&#x00E4;ngig von der Menge der Daten kann dieser Prozess einige Zeit dauern.</span>
 	</div>

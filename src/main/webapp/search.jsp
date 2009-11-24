@@ -162,7 +162,7 @@ public HashSet getSubrecordsTargetNames(Record record, StringBuffer buffer, Hash
 </head>
 <body>
 <center>
-<div class="headline">
+<div class="headline"><a class="logout" href="login.jsp?logout=true">abmelden</a>
 		<br />Index testen<br /><br />
 		<span class="byline">Sie k&#x00F6;nnen Suchabfragen formulieren, um den Index zu testen. Es werden nur die ersten 10 Treffer dargestellt.</span>
 </div>

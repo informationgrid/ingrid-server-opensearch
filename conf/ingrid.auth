@@ -1,0 +1,3 @@
+IngridLogin {
+   de.ingrid.server.security.PlugdescriptionLoginModule required;
+};

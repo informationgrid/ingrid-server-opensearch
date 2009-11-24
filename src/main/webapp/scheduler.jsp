@@ -49,7 +49,7 @@ if (request.getParameter("time") != null && request.getParameter("day") != null)
 }
 %>
 <center>
-	<div class="headline"><br />
+	<div class="headline"><a class="logout" href="login.jsp?logout=true">abmelden</a><br />
 		Scheduling<br /><br />
 		<span class="byline">
 		Bitte geben Sie ein Zeitmuster an, nach dem der Index regelm&#x00E4;&#x00DF;ig neu erstellt werden soll.<br />
