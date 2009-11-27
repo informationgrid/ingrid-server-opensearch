@@ -7,6 +7,7 @@
 	<property name="xml-communication" 	   value="${installDir}/conf/communication.xml"/>
 	<property name="opensearch-properties" value="${installDir}/conf/ingrid-opensearch.properties"/>
   <property name="plugdescription"       value="${installDir}/conf/plugdescription.xml"/>
+  <property name="xml-descriptor" 	      value="${installDir}/conf/descriptor.xml"/>
 	
 	<target name="extract" description="Extract all files to the installation directory.">
 		<unzip src="${antinstaller.jar}" dest="${installDir}">
@@ -31,7 +32,11 @@
     <replace file="${opensearch-properties}" token="@METADATA_DETAILS_URL@" value="${metadataDetailsUrl}"/>
     <replace file="${opensearch-properties}" token="@ENABLE_CACHING@"       value="${enableCaching}"/>
     
+    <echo>Schreibe Passwort</echo>
     <replace file="${plugdescription}" token="@PASSWORD@"                   value="${adminPassword}"/>
+    
+    <echo>Schreibe Deskriptor-Server</echo>
+		<replace file="${xml-descriptor}" token="@PROXY_URL@" value="${externalInterfaceHost}:${externalInterfacePort}/${externalInterfacePath}"/>
 	</target>
 	
 	<target name="info">

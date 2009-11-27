@@ -5,5 +5,5 @@
   <Description>Here you can search inside an index which comes from a database.</Description>
   <Tags>ingrid server opensearch web</Tags>
   <Contact>contact@wemove.com</Contact>
-  <Url type="application/rss+xml" template="http://@PROXY_URL@/query?q={searchTerms}+datatype:default+ranking:score&amp;bbox={geo:box?}&amp;p={startPage?}&amp;h={count?}&amp;xml={ingridsearch:xml?}&amp;georss={ingridsearch:georss?}&amp;ingrid={ingridsearch:ingrid?}&amp;format=rss" />
+  <Url type="application/rss+xml" template="http://localhost/query?q={searchTerms}+datatype:default+ranking:score&amp;bbox={geo:box?}&amp;p={startPage?}&amp;h={count?}&amp;xml={ingridsearch:xml?}&amp;georss={ingridsearch:georss?}&amp;format=rss" />
 </OpenSearchDescription>
