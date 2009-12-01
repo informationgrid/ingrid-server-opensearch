@@ -12,7 +12,7 @@ BeanFactory beanFactory = (BeanFactory) application.getAttribute("beanFactory");
 File pd_file = (File) beanFactory.getBean("pd_file");
 PlugDescription  description = (PlugDescription) request.getSession().getAttribute("description");
 
-if(pd_file.exists()){
+if (pd_file.exists()) {
 	InputStream in = new FileInputStream(pd_file);
 	
 	XMLSerializer serializer = new XMLSerializer();
@@ -23,14 +23,14 @@ if(pd_file.exists()){
 request.getSession().removeAttribute("description");
 request.getSession().setAttribute("description", description);
 
-description.setIPlugClass("de.ingrid.iplug.dsc.index.DSCSearcher");
+//description.setIPlugClass("de.ingrid.iplug.dsc.index.DSCSearcher");
 Construct construct = (Construct) description.get("construct");
 request.getSession().setAttribute("construct", construct);
 
-String mode = WebUtil.getParameter(request, "mode", "editall");
+String mode = WebUtil.getParameter(request, "mode", "invalid");
 if(mode.equals("editall")){
-	response.sendRedirect(response.encodeRedirectURL("dbConnection.jsp"));
-}else{
+	response.sendRedirect(response.encodeRedirectURL("osSettings.jsp"));
+}else if(mode.equals("reindex")){
 	response.sendRedirect(response.encodeRedirectURL("scheduler.jsp"));
 }	
 %>
@@ -39,8 +39,27 @@ if(mode.equals("editall")){
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Index Mapping</title>
+<link href="<%=response.encodeURL("css/admin.css")%>" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
-<center>Sie werden weitergeleitet...</center>
+<center>
+    <div class="headline"><a class="logout" href="login.jsp?logout=true">abmelden</a><br />
+        Administration des Opensearch-Servers
+        <br /><br />
+    </div>
+    <br />
+	<form name="mode" method="post" action="<%=response.encodeURL("index.jsp")%>">
+		<table class="table" width="400" align="center">
+		    <tr>
+		        <td colspan="2" class="tablehead" align="center">Auswahl</td>
+		    </tr>
+		    <tr>
+		        <td class="tablecell"><a href="index.jsp?mode=editall"><input type="submit" value="Alle Einstellungen bearbeiten"/></a></td>
+		        <td class="tablecell"><a href="index.jsp?mode=reindex"><input type="submit" value="Nur Zeitsteuerung bearbeiten / sofortige Neuindizierung"/></a></td>
+		    </tr>
+		</table>
+	</form>
+</center>
 </body>
 </html>

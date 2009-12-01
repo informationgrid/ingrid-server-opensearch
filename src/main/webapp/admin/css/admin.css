@@ -19,3 +19,4 @@ table.table {border:1px;border-style:solid;border-color:#176798;margin:2;padding
 table.tableshort {border:1px;border-style:solid;border-color:#176798;margin:2;padding:2}
 input.button {border:1px;border-style:solid;border-color:#000000;background-color:#CCCCCC;font-family:Arial;font-size:10px;font-weight:bold}
 div.chain{position:relative;z-index:2;left:-40;top:10}
+a {text-decoration:none;}

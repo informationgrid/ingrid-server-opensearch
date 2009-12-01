@@ -30,10 +30,13 @@
             
             <comment displayText="" explanatoryText="Lokaler Port, unter dem der OpenSearch Server laufen soll. Lokal kann der OpenSearch Server dann per http://localhost:PORT/query?q=... aufgerufen werden."/>           
             <text property="localServerPort" displayText="Lokaler Port für den Server:" defaultValue="8083"/>
-            <comment displayText="" explanatoryText="Anzahl der Ergebnisse, die pro OpenSearch Anfrage zurückgegeben werden. Diese Eigenschaft begrenzt die Belastung des Systems."/>
-            <text property="maxRequestedHits" displayText="max. Ergebnisse pro Anfrage:" defaultValue="100"/>
+            <comment displayText="" explanatoryText="Um Detaildaten von IGC-Metadaten anzuzeigen, kann hier eine Basis-Url hinterlegt werden. Links für IGC Metadaten Details werden dann über diese URL realisiert."/>
+            <text property="metadataDetailsUrl"   displayText="URL für IGC Detaildaten:"   defaultValue="http://portalu.de/ingrid-portal/portal/search-detail.psml"/>
+            <!--<comment displayText="" explanatoryText="Anzahl der Ergebnisse, die pro OpenSearch Anfrage zurückgegeben werden. Diese Eigenschaft begrenzt die Belastung des Systems."/>-->
+            <!-- <text property="maxRequestedHits" displayText="max. Ergebnisse pro Anfrage:" defaultValue="100"/>-->
     </page>
 
+    <!--
     <page
             type        ="input"
             name        ="componentOptions2"
@@ -43,7 +46,7 @@
             <text property="metadataDetailsUrl"   displayText="URL für IGC Detaildaten:"   defaultValue="http://portalu.de/ingrid-portal/portal/search-detail.psml"/>
             <comment displayText="" explanatoryText="Ergebniss von Anfragen werden für 5min im Cache gehalten."/>
             <checkbox property="enableCaching"   displayText="Caching:"   defaultValue="true"/>         
-    </page>
+    </page>-->
     
     <page
             type        ="input"

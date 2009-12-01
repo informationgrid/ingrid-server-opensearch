@@ -23,11 +23,11 @@
 </head>
 <body>
 <center>
-	<div class="headline"><a class="logout" href="login.jsp?logout=true">abmelden</a><br />
+	<div class="headline"><!-- <a class="logout" href="login.jsp?logout=true">abmelden</a>--><br />
 		Konfiguration abgeschlossen
 		<br /><br />
 		<span class="byline">
-			Ihr Datasource Client ist jetzt fertig eingerichtet. Sie k&#x00F6;nnen Ihren Browser schlie&#x00DF;en, um sich auszuloggen. <br />
+			Ihr Opensearch-Server ist jetzt fertig eingerichtet. Sie k&#x00F6;nnen Ihren Browser schlie&#x00DF;en.<br />
 		</span>
 	</div>
 	<br />
@@ -35,7 +35,7 @@
 	<table class="table" align="center">
 		<tr align="center">
 			<td>
-				<input type="submit" value="Weiter" />
+				<input type="submit" value="Neu einloggen" />
 			</td>
 		</tr>
 	</table>

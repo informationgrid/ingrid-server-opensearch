@@ -27,10 +27,10 @@
 	<target name="config" description="Configure the file ingrid-opensearch.properties">
 		<echo>Schreibe OpenSearch Konfiguration in ingrid-opensearch.properties</echo>
     <replace file="${opensearch-properties}" token="@LOCAL_SERVER_PORT@"    value="${localServerPort}"/>
-    <replace file="${opensearch-properties}" token="@MAX_REQUESTED_HITS@"   value="${maxRequestedHits}"/>
+    <!-- <replace file="${opensearch-properties}" token="@MAX_REQUESTED_HITS@"   value="${maxRequestedHits}"/>-->
     <replace file="${opensearch-properties}" token="@PROXY_URL@"            value="http://${externalInterfaceHost}:${externalInterfacePort}/${externalInterfacePath}"/>
     <replace file="${opensearch-properties}" token="@METADATA_DETAILS_URL@" value="${metadataDetailsUrl}"/>
-    <replace file="${opensearch-properties}" token="@ENABLE_CACHING@"       value="${enableCaching}"/>
+    <!-- <replace file="${opensearch-properties}" token="@ENABLE_CACHING@"       value="${enableCaching}"/>-->
     
     <echo>Schreibe Passwort</echo>
     <replace file="${plugdescription}" token="@PASSWORD@"                   value="${adminPassword}"/>

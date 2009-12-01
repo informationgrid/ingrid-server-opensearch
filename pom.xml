@@ -183,6 +183,7 @@
                   </connector>
               </connectors>
               <scanIntervalSeconds>2</scanIntervalSeconds>
+              <reload>manual</reload>
           </configuration>
       </plugin>
       <plugin>

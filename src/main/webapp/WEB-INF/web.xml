@@ -33,7 +33,7 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Any User</web-resource-name>
-            <url-pattern>/*</url-pattern>
+            <url-pattern>/admin/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>*</role-name>
@@ -43,9 +43,9 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Free</web-resource-name>
-            <url-pattern>/css/*</url-pattern>
-            <url-pattern>/gfx/*</url-pattern>
-            <url-pattern>/auth/*</url-pattern>
+            <url-pattern>/admin/css/*</url-pattern>
+            <url-pattern>/admin/gfx/*</url-pattern>
+            <url-pattern>/admin/auth/*</url-pattern>
             <url-pattern>/descriptor/*</url-pattern>
             <url-pattern>/query/*</url-pattern>
         </web-resource-collection>
@@ -54,14 +54,14 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
     <login-config>
         <auth-method>FORM</auth-method>
         <form-login-config>
-            <form-login-page>/login.jsp</form-login-page>
-            <form-error-page>/login.jsp?error=wrong</form-error-page>
+            <form-login-page>/admin/login.jsp</form-login-page>
+            <form-error-page>/admin/login.jsp?error=wrong</form-error-page>
         </form-login-config>
     </login-config>
 
     <error-page>
         <error-code>403</error-code>
-        <location>/login.jsp?error=role</location>
+        <location>/admin/login.jsp?error=role</location>
     </error-page>
     
 </web-app>

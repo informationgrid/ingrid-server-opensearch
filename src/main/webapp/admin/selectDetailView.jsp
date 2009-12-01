@@ -21,7 +21,7 @@ if(WebUtil.getParameter(request, "submitted", null)!=null && WebUtil.getParamete
 	String detailUrl = WebUtil.getParameter(request, "detailUrl", "");
 	if(!detailUrl.equals("")){
 		description.put("detailUrl", detailUrl);
-		response.sendRedirect(response.encodeRedirectURL("save.jsp"));
+		response.sendRedirect(response.encodeRedirectURL("scheduler.jsp"));
 	} else {
 		error = "urlEmpty";
 	}
@@ -30,7 +30,7 @@ if(WebUtil.getParameter(request, "submitted", null)!=null && WebUtil.getParamete
 //radio selected and no custom URL
 if(WebUtil.getParameter(request, "submitted", null)!=null && WebUtil.getParameter(request, "customDetail", "").equals("false")){
 	description.remove("detailUrl");
-	response.sendRedirect(response.encodeRedirectURL("save.jsp"));
+	response.sendRedirect(response.encodeRedirectURL("scheduler.jsp"));
 	customDetail = WebUtil.getParameter(request, "customDetail", "");
 }
 if(WebUtil.getParameter(request, "submitted", null)!=null ){
