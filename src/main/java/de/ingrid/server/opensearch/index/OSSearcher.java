@@ -26,7 +26,7 @@ import de.ingrid.utils.query.IngridQuery;
  */
 public class OSSearcher extends AbstractSearcher {
 
-	private RecordLoader fDetailer;
+	//private RecordLoader fDetailer;
 
 	private SchedulingService fScheduler;
 
@@ -61,6 +61,8 @@ public class OSSearcher extends AbstractSearcher {
 		}
 		this.fSearcher = new IndexSearcher(new File(plugDescription
 				.getWorkinDirectory(), "index").getAbsolutePath());
+		
+		this.fScheduler = new SchedulingService(new File(plugDescription.getWorkinDirectory(), "jobstore"));
 	}
 
 	public IngridHits search(IngridQuery query, int start, int length)
@@ -98,9 +100,9 @@ public class OSSearcher extends AbstractSearcher {
 	
 
 	public void close() throws Exception {
-		if (this.fDetailer != null) {
-			this.fDetailer.close();
-		}
+		//if (this.fDetailer != null) {
+		//	this.fDetailer.close();
+		//}
 		if (this.fSearcher != null) {
 			this.fSearcher.close();
 		}

@@ -9,6 +9,7 @@ import javax.servlet.ServletContextListener;
 
 import org.apache.log4j.Logger;
 
+import de.ingrid.server.opensearch.index.OSSearcher;
 import de.ingrid.utils.BeanFactory;
 import de.ingrid.utils.PlugDescription;
 import de.ingrid.utils.xml.XMLSerializer;
@@ -46,9 +47,24 @@ public class ContextListener implements ServletContextListener {
                 serializer.serialize(pd, file);
             }
             beanFactory.addBean("pd_file", file);
+            
+            // init and start scheduler of DSC component
+            OSSearcher searcher = new OSSearcher();
+            final XMLSerializer serializer = new XMLSerializer();
+            
+            PlugDescription pd = (PlugDescription)serializer.deSerialize(file);
+            pd.put("PLUGDESCRIPTION_FILE", file.getAbsolutePath());
+            try {
+                searcher.configure(pd);
+            } catch (Exception e) {
+                LOG.error("Problem when configuring the Searcher. Probably no index available!?");
+            }
         } catch (final IOException e) {
             LOG.error("can not add plugdescription", e);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
-
+    
 }

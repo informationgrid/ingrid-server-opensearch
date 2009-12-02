@@ -42,6 +42,10 @@ if(url !=null){
 
 BeanFactory beanFactory = (BeanFactory) application.getAttribute("beanFactory");
 File pd_file = (File) beanFactory.getBean("pd_file");
+
+// add pd-location needed in DSCSearcher after indexing
+description.put("PLUGDESCRIPTION_FILE", pd_file.getAbsolutePath());
+
 XMLSerializer serializer = new XMLSerializer();
 if (null == description) {
 	System.out.println("step2/save.jsp: ERROR in step2/save.jsp: current values lost during session timeout, plugdescription from web container was <null> and was not written");

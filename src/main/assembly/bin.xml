@@ -10,10 +10,6 @@
       <directory>src/main/release/conf</directory>
       <outputDirectory>${project.build.finalName}/conf</outputDirectory>
     </fileSet>
-    <!--<fileSet>
-      <directory>target/${project.build.finalName}</directory>
-      <outputDirectory>${project.build.finalName}/webapp</outputDirectory>
-    </fileSet>-->
     <fileSet>
       <directory>src/main/release/scripts</directory>
       <outputDirectory>${project.build.finalName}/</outputDirectory>
@@ -40,6 +36,12 @@
       <outputDirectory>${project.build.finalName}/doc</outputDirectory>
     </fileSet>
   </fileSets>
+  <files>
+    <file>
+      <source>src/main/release/conf/log4j.properties</source>
+      <outputDirectory>${project.build.finalName}/jetty/webapps/ROOT/WEB-INF/classes/</outputDirectory>
+    </file>
+  </files>
   <!--<dependencySets>
     <dependencySet>
       <outputDirectory>${project.build.finalName}/lib</outputDirectory>

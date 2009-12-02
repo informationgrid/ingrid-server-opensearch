@@ -7,6 +7,7 @@
 <%@ page import="de.ingrid.utils.PlugDescription" %>
 <%@ page import="org.apache.commons.configuration.PropertiesConfiguration" %>
 <%@ include file="timeoutcheck.jsp"%>
+<%@page import="java.io.File"%>
 <%!
 private final String SERVER_PORT    = "server.port";
 private final String PROXY_URL      = "proxy.url";
@@ -33,6 +34,13 @@ private final String ERROR_PORT     = "error.port";
 	        error = ERROR_PORT;
 	    } else {
 		    properties.save();
+		    
+		    // write working directory into PD which is also needed for indexing
+		    PlugDescription  description = (PlugDescription) request.getSession().getAttribute("description");
+		    description.setWorkinDirectory(new File("index/"));
+		    System.out.println("WorkingDir: " + (new File("index/")).getAbsolutePath());
+		    
+		    // redirect to the next page
 		    response.sendRedirect(response.encodeRedirectURL("dbConnection.jsp"));
 	    }
 	} 
