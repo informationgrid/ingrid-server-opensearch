@@ -54,6 +54,7 @@ public class OpensearchServerServlet extends HttpServlet {
         // set content Type
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/xml");
+        response.setCharacterEncoding("UTF-8");
 
         final OSSearcher searcher = getSearcher();
 

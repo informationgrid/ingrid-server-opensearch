@@ -11,8 +11,8 @@ import java.io.IOException;
 import org.apache.lucene.search.IndexSearcher;
 
 import de.ingrid.iplug.dsc.index.AbstractSearcher;
-import de.ingrid.iplug.dsc.index.RecordLoader;
 import de.ingrid.iplug.scheduler.SchedulingService;
+import de.ingrid.opensearch.util.OpensearchConfig;
 import de.ingrid.utils.IngridHit;
 import de.ingrid.utils.IngridHitDetail;
 import de.ingrid.utils.IngridHits;
@@ -51,9 +51,9 @@ public class OSSearcher extends AbstractSearcher {
 		super(file, string);
 	}
 
-	public void configure(PlugDescription plugDescription) throws Exception {
+	public void configure(final PlugDescription plugDescription) throws Exception {
 		this.fPlugDescription = plugDescription;
-		this.fPlugId = plugDescription.getPlugId();
+		this.fPlugId = OpensearchConfig.getInstance("conf/ingrid-opensearch.properties").getString("associated.iplug", "NOT_DEFINED");//plugDescription.getPlugId();
 		this.fUrl = (String) plugDescription.get("detailUrl");
 		if (log.isDebugEnabled()) {
 			log.debug("Use search index in: " + new File(plugDescription
@@ -86,7 +86,7 @@ public class OSSearcher extends AbstractSearcher {
 		
 		IngridHits ingridHits = search(query, false, start, length);
     	
-		String[] reqMetadata = {};
+		String[] reqMetadata = {"partner","provider","t1","t2","x1","x2","y1","y2"};
 		IngridHitDetail[] details = getDetails(ingridHits.getHits(), query, reqMetadata);
 		for (int i=0; i<details.length; i++) {
 			ingridHits.getHits()[i].setHitDetail(details[i]);

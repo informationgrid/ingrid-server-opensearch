@@ -6,12 +6,23 @@
 <%@ page import="de.ingrid.iplug.util.*"%>
 <%@ page import="de.ingrid.utils.PlugDescription" %>
 <%@ page import="org.apache.commons.configuration.PropertiesConfiguration" %>
+<%@ page import="de.ingrid.opensearch.util.OpensearchConfig"%>
 <%@ include file="timeoutcheck.jsp"%>
-<%@page import="java.io.File"%>
+<%@ page import="java.io.File"%>
+<%@page import="java.io.FileOutputStream"%>
+<%@page import="javax.xml.parsers.DocumentBuilderFactory"%>
+<%@page import="javax.xml.parsers.DocumentBuilder"%>
+<%@page import="org.w3c.dom.Document"%>
+<%@page import="org.w3c.dom.NodeList"%>
+<%@page import="javax.xml.xpath.XPath"%>
+<%@page import="javax.xml.xpath.XPathFactory"%>
+<%@page import="javax.xml.xpath.XPathConstants"%>
+<%@page import="org.apache.xml.serialize.OutputFormat"%>
+<%@page import="org.apache.xml.serialize.XMLSerializer"%>
+
 <%!
 private final String SERVER_PORT    = "server.port";
 private final String PROXY_URL      = "proxy.url";
-private final String DETAILS_URL    = "metadata.details.url";
 
 private final String ERROR_PORT     = "error.port";
 %>
@@ -19,7 +30,7 @@ private final String ERROR_PORT     = "error.port";
 
 	boolean submitted = WebUtil.getParameter(request, "submitted", null )!=null;
 	String error = request.getParameter("error");
-	PropertiesConfiguration properties = new PropertiesConfiguration("conf/ingrid-opensearch.properties");
+	PropertiesConfiguration properties = OpensearchConfig.getInstance();//new PropertiesConfiguration("conf/ingrid-opensearch.properties");
 	
 	if(submitted){
 	    String port = request.getParameter("port");
@@ -27,7 +38,6 @@ private final String ERROR_PORT     = "error.port";
 	    // save back in properties file
         properties.setProperty(SERVER_PORT, port);
         properties.setProperty(PROXY_URL,   request.getParameter("extUrl"));
-        properties.setProperty(DETAILS_URL, request.getParameter("detailUrl"));
         
         // check if port is correct
 	    if (!port.matches("[1-9][0-9]+")) {
@@ -35,23 +45,50 @@ private final String ERROR_PORT     = "error.port";
 	    } else {
 		    properties.save();
 		    
+		    //-------------------------------------------
+		    // write descriptor with updated external URL
+		    //-------------------------------------------
+		    DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
+            Document doc = docBuilder.parse (new File("conf/descriptor.xml"));
+            
+            NodeList nodeList = doc.getElementsByTagName("Url");
+            XPath xpath = XPathFactory.newInstance().newXPath();
+            NodeList urlList = (NodeList) xpath.evaluate("/OpenSearchDescription/Url/@template", doc, XPathConstants.NODESET);
+            String url = urlList.item(0).getTextContent();
+            url = url.replaceAll("http:.*query", request.getParameter("extUrl") + "/query");
+            urlList.item(0).setTextContent(url);
+            //System.out.println("URL: " + url);
+            
+            FileOutputStream fos = new FileOutputStream("conf/descriptor.xml");
+            // XERCES 1 or 2 additionnal classes.
+			OutputFormat of = new OutputFormat("XML","UTF-8",true);
+			of.setIndent(1);
+			of.setIndenting(true);
+			XMLSerializer serializer = new XMLSerializer(fos,of);
+			// As a DOM Serializer
+			serializer.asDOMSerializer();
+			serializer.serialize( doc.getDocumentElement() );
+			fos.close();
+			//-------------------------------------------
+			
 		    // write working directory into PD which is also needed for indexing
 		    PlugDescription  description = (PlugDescription) request.getSession().getAttribute("description");
 		    description.setWorkinDirectory(new File("index/"));
-		    System.out.println("WorkingDir: " + (new File("index/")).getAbsolutePath());
+		    //System.out.println("WorkingDir: " + (new File("index/")).getAbsolutePath());
 		    
 		    // redirect to the next page
 		    response.sendRedirect(response.encodeRedirectURL("dbConnection.jsp"));
 	    }
 	} 
 		
-	String port        = properties.getString(SERVER_PORT);
-    String extUrl      = properties.getString(PROXY_URL);
-    String detailUrl   = properties.getString(DETAILS_URL);
+	String port   = properties.getString(SERVER_PORT);
+    String extUrl = properties.getString(PROXY_URL);
 
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -71,7 +108,7 @@ private final String ERROR_PORT     = "error.port";
 	</div>
 	<br />
 	<form name="osSettings" method="post" action="<%=response.encodeURL("osSettings.jsp")%>">
-		<table class="table" width="400" align="center">
+		<table class="table" style="width:600px;" align="center">
 			<tr>
 				<td colspan="2" class="tablehead">Einstellungen</td>
 			</tr>
@@ -81,16 +118,14 @@ private final String ERROR_PORT     = "error.port";
 				    <input name="port" type="text" style="width:100%" value="<%=port%>"/>
 				    <% if (error != null && error.equals(ERROR_PORT)) { %>
 				    <div class="error">Der Port muss mindestens zweistellig sein und nur aus Zahlen bestehen!</div>
-				    <% } %>				
+				    <% } %>
+				    <div style="color:gray;">Port auf dem der Opensearch-Server betrieben werden soll Wird dieser Port geändert so muss der Server neu gestartet werden.</div> 
 				</td>
 			</tr>
 			<tr>
                 <td class="tablecell" width="160">Externe URL des Dienstes:</td>
-                <td class="tablecell"><input name="extUrl" type="text" style="width:100%" value="<%=extUrl%>"/></td>
-            </tr>
-            <tr>
-                <td class="tablecell" width="160">Detail URL:</td>
-                <td class="tablecell"><input name="detailUrl" type="text" style="width:100%" value="<%=detailUrl%>"/></td>
+                <td class="tablecell"><input name="extUrl" type="text" style="width:100%" value="<%=extUrl%>"/><br/>
+                <div style="color:gray;">Von außen sichtbare URL des Dienstes. Diese URL wird verwendet, um den Dienst in Suchergebnis und Deskriptor zu referenzieren.</div></td>
             </tr>
 		</table>
 		<br />

@@ -22,6 +22,9 @@
     <fileSet>
       <directory>target/jetty-6.1.14</directory>
       <outputDirectory>${project.build.finalName}/jetty</outputDirectory>
+      <excludes>
+        <exclude>**/etc/webdefault.xml</exclude>
+      </excludes>
     </fileSet>
     <fileSet>
       <directory>target/installer</directory>
@@ -40,6 +43,10 @@
     <file>
       <source>src/main/release/conf/log4j.properties</source>
       <outputDirectory>${project.build.finalName}/jetty/webapps/ROOT/WEB-INF/classes/</outputDirectory>
+    </file>
+    <file>
+      <source>src/main/release/jetty/webdefault.xml</source>
+      <outputDirectory>${project.build.finalName}/jetty/etc/</outputDirectory>
     </file>
   </files>
   <!--<dependencySets>

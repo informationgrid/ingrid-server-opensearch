@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ page import="de.ingrid.iplug.util.*" %>   
 <%@ page import="de.ingrid.iplug.dsc.index.*" %>
 <%@ page import="de.ingrid.utils.dsc.*" %>

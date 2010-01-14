@@ -16,7 +16,7 @@
 	<page
 			type		="input"
 			name		="intro"
-			displayText	="Willkommen zur Opsensearch-Server Installation"
+			displayText	="Willkommen zur Opensearch-Server Installation"
 			target		="extract">
         <comment displayText="" bold="true" explanatoryText="Dieser Assistent hilft Ihnen bei der Installation sowie Konfiguration des Servers."/>
         <comment displayText="Hinweis: " bold="true"/>
@@ -30,8 +30,8 @@
             
             <comment displayText="" explanatoryText="Lokaler Port, unter dem der OpenSearch Server laufen soll. Lokal kann der OpenSearch Server dann per http://localhost:PORT/query?q=... aufgerufen werden."/>           
             <text property="localServerPort" displayText="Lokaler Port für den Server:" defaultValue="8083"/>
-            <comment displayText="" explanatoryText="Die von außen sichtbare URL des Dienstes. Diese URL wird verwendet, um den Dienst in Suchergebnis und Opensearch Description zu referenzieren."/>
-            <text property="metadataDetailsUrl"   displayText="externe URL des Dienstes:"   defaultValue="http://portalu.de/ingrid-portal/portal/search-detail.psml"/>
+            <!--<comment displayText="" explanatoryText="Die von außen sichtbare URL des Dienstes. Diese URL wird verwendet, um den Dienst in Suchergebnis und Opensearch Description zu referenzieren."/>-->
+            <!-- <text property="metadataDetailsUrl"   displayText="externe URL des Dienstes:"   defaultValue="http://portalu.de/ingrid-portal/portal/search-detail.psml"/>-->
             <!--<comment displayText="" explanatoryText="Anzahl der Ergebnisse, die pro OpenSearch Anfrage zurückgegeben werden. Diese Eigenschaft begrenzt die Belastung des Systems."/>-->
             <!-- <text property="maxRequestedHits" displayText="max. Ergebnisse pro Anfrage:" defaultValue="100"/>-->
     </page>
@@ -54,9 +54,9 @@
             displayText ="Proxy-Einstellungen fuer den OpenSearch-Server">
 
             <comment displayText="" explanatoryText="Die externen Einstellungen werden in den Ergebnissen des Servers verwendet, um den externen Zugriff auf den Server zu beschreiben. Die Werte können geändert werden, wenn z.B. eine Proxy-Weiterleitung zum OpenSearch Server eingerichtet wurde."/>          
-            <text property="externalInterfaceHost"   displayText="Externer Servername:"   defaultValue="127.0.0.1"/>
+            <text property="externalInterfaceHost"   displayText="Externer Servername:"   defaultValue="http://www.portalu.de"/>
             <text property="externalInterfacePort"   displayText="Externer Port:"   defaultValue="80"/>
-            <text property="externalInterfacePath"   displayText="Externer Pfad:"   defaultValue="opensearch"/>
+            <text property="externalInterfacePath"   displayText="Externer Pfad:"   defaultValue="opensearchserver"/>
     </page>
     
     <page

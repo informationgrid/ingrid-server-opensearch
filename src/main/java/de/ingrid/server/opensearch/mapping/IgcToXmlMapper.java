@@ -21,7 +21,8 @@ public class IgcToXmlMapper implements OpensearchMapper {
 			doc = osServlet.createXMLDocumentFromIngrid(
 					(HttpServletRequest) parameter.get(HTTP_SERVLET_REQUEST),
 					(RequestWrapper) parameter.get(REQUEST_WRAPPER),
-					hits);
+					hits,
+					true);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

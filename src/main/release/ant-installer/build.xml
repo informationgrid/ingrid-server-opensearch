@@ -29,7 +29,7 @@
     <replace file="${opensearch-properties}" token="@LOCAL_SERVER_PORT@"    value="${localServerPort}"/>
     <!-- <replace file="${opensearch-properties}" token="@MAX_REQUESTED_HITS@"   value="${maxRequestedHits}"/>-->
     <replace file="${opensearch-properties}" token="@PROXY_URL@"            value="http://${externalInterfaceHost}:${externalInterfacePort}/${externalInterfacePath}"/>
-    <replace file="${opensearch-properties}" token="@METADATA_DETAILS_URL@" value="${metadataDetailsUrl}"/>
+    <!-- <replace file="${opensearch-properties}" token="@METADATA_DETAILS_URL@" value="${metadataDetailsUrl}"/>-->
     <!-- <replace file="${opensearch-properties}" token="@ENABLE_CACHING@"       value="${enableCaching}"/>-->
     
     <echo>Schreibe Passwort</echo>
@@ -51,7 +51,7 @@ Gehen Sie ins Verzeichnis:
 ${installDir}
 und rufen sie von der Kommandozeile folgendes auf
 "sh start.sh start", um im Webbrowser das iPlug unter
-der folgenden Adresse "http://localhost:8088"
+der folgenden Adresse "http://localhost:${localServerPort}"
 zu konfigurieren. Anstelle von localhost koennen Sie
 auch die IP-Adresse des Computers eingeben!
 Bitte lesen Sie bzgl. der Administration die Kapitel unter
