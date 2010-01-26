@@ -6,7 +6,7 @@
 			verbose		        ="true"
 			debug		        ="true"
 			lookAndFeel	        ="org.tp23.jgoodies.plaf.plastic.PlasticXPLookAndFeel"
-			name		        ="Opensearch-Server Installation"
+			name		        ="Upgrade-Server Installation"
 			windowIcon	        ="/resources/icons/logoIcon.gif"
 			defaultImageResource="/resources/makewavesdawn.png"
 			minJavaVersion      ="1.6"
@@ -16,7 +16,7 @@
 	<page
 			type		="input"
 			name		="intro"
-			displayText	="Willkommen zur Opensearch-Server Installation"
+			displayText	="Willkommen zur Upgrade-Server Installation"
 			target		="extract">
         <comment displayText="" bold="true" explanatoryText="Dieser Assistent hilft Ihnen bei der Installation sowie Konfiguration des Servers."/>
         <comment displayText="Hinweis: " bold="true"/>
@@ -26,47 +26,15 @@
     <page
             type        ="input"
             name        ="componentOptions"
-            displayText ="Einstellungen fuer den OpenSearch-Server">
-            
-            <comment displayText="" explanatoryText="Lokaler Port, unter dem der OpenSearch Server laufen soll. Lokal kann der OpenSearch Server dann per http://localhost:PORT/query?q=... aufgerufen werden."/>           
-            <text property="localServerPort" displayText="Lokaler Port für den Server:" defaultValue="8083"/>
-            <!--<comment displayText="" explanatoryText="Die von außen sichtbare URL des Dienstes. Diese URL wird verwendet, um den Dienst in Suchergebnis und Opensearch Description zu referenzieren."/>-->
-            <!-- <text property="metadataDetailsUrl"   displayText="externe URL des Dienstes:"   defaultValue="http://portalu.de/ingrid-portal/portal/search-detail.psml"/>-->
-            <!--<comment displayText="" explanatoryText="Anzahl der Ergebnisse, die pro OpenSearch Anfrage zurückgegeben werden. Diese Eigenschaft begrenzt die Belastung des Systems."/>-->
-            <!-- <text property="maxRequestedHits" displayText="max. Ergebnisse pro Anfrage:" defaultValue="100"/>-->
-    </page>
-
-    <!--
-    <page
-            type        ="input"
-            name        ="componentOptions2"
-            displayText ="Einstellungen fuer den OpenSearch-Server (2)">
-            
-            <comment displayText="" explanatoryText="Um Detaildaten von IGC-Metadaten anzuzeigen, kann hier eine Basis-Url hinterlegt werden. Links für IGC Metadaten Details werden dann über diese URL realisiert."/>
-            <text property="metadataDetailsUrl"   displayText="URL für IGC Detaildaten:"   defaultValue="http://portalu.de/ingrid-portal/portal/search-detail.psml"/>
-            <comment displayText="" explanatoryText="Ergebniss von Anfragen werden für 5min im Cache gehalten."/>
-            <checkbox property="enableCaching"   displayText="Caching:"   defaultValue="true"/>         
-    </page>-->
-    
-    <page
-            type        ="input"
-            name        ="componentOptions3"
-            displayText ="Proxy-Einstellungen fuer den OpenSearch-Server">
-
-            <comment displayText="" explanatoryText="Die externen Einstellungen werden in den Ergebnissen des Servers verwendet, um den externen Zugriff auf den Server zu beschreiben. Die Werte können geändert werden, wenn z.B. eine Proxy-Weiterleitung zum OpenSearch Server eingerichtet wurde."/>          
-            <text property="externalInterfaceHost"   displayText="Externer Servername:"   defaultValue="http://www.portalu.de"/>
-            <text property="externalInterfacePort"   displayText="Externer Port:"   defaultValue="80"/>
-            <text property="externalInterfacePath"   displayText="Externer Pfad:"   defaultValue="opensearchserver"/>
-    </page>
-    
-    <page
-            type        ="input"
-            name        ="componentOptions4"
-            displayText ="Passwort für die Administrationsoberfläche"
+            displayText ="Einstellungen fuer den Upgrade-Server"
             target      ="config">
-
-            <comment displayText="" explanatoryText="Hier wird das Passwort für den Zugang zur Administrationsoberfläche gesetzt. Dieses kann später in der Datei 'plugdescription.xml' im conf-Verzeichnis geändert werden."/>
-            <text property="adminPassword"   displayText="Administrationspasswort:"   defaultValue=""/>
+            
+            <comment displayText="" explanatoryText="Lokaler Port, unter dem der Upgrade-Server laufen soll. Lokal kann der Upgrade-Server dann per http://localhost:PORT aufgerufen werden."/>           
+            <text property="localServerPort" displayText="Lokaler Port für den Server:" defaultValue="8084"/>
+            <comment displayText="" explanatoryText="Geben Sie hier das Verzeichnis an, dass die zu verwaltenden Dateien bereithält. Es können *.zip und *.jar in dieses Verzeichnis kopiert werden, die dann vom Upgrade-Server aufgenommen und verwaltet werden."/>           
+            <text property="sourceDir" displayText="Verzeichnis für Distributionen:" defaultValue="./distributions"/>
+            <comment displayText="" explanatoryText="Externe URL unter der der Upgrade-Server erreichbar ist. Diese URL wird für die Linkgenerierung benötigt, so dass diese auf eine gültige Adresse verweisen. Befindet sich der Server bspw. hinter einer Weiterleitung eines Apache-Servers, so muss die externe erreichbare URL angegeben werden, da sie nicht automatisch ermittelt werden kann."/>           
+            <text property="externalUrl" displayText="Externe URL:" defaultValue="http://www.portalu.de/update"/>
     </page>
 
 	<!--  type="input" shows a list of editable options for the installer -->

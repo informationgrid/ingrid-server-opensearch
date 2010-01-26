@@ -17,11 +17,8 @@ THIS_DIR=`dirname "$THIS"`
 INGRID_HOME=`cd "$THIS_DIR" ; pwd`
 PID=$INGRID_HOME/ingrid.pid
 
-INGRID_OPTS="-Djetty.port=8082 -Djetty.reload=manual -Djetty.home=./jetty"
-if [ -f $INGRID_HOME/conf/ingrid-opensearch.properties ]; then
-	PORT=`sed '/^\#/d' conf/ingrid-opensearch.properties | grep 'server.port'  | tail -n 1 | sed 's/^.*=//;s/^[[:space:]]*//;s/[[:space:]]*$//'`
-	INGRID_OPTS="-Djetty.port="$PORT" -Djetty.reload=manual -Djetty.home=./jetty"
-fi
+# -Durl describes the URL that can be accessed from extern
+INGRID_OPTS="-Durl=@EXTERNAL_URL@ -Djetty.port=@SERVER_PORT@ -Dsource=@SOURCE_DIR@ -Dindex=./index -Djetty.reload=manual -Djetty.home=./jetty"
 
 # functions
 stopIplug()
