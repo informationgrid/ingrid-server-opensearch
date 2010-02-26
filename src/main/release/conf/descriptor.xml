@@ -4,6 +4,8 @@
   <ShortName>InGrid Server OpenSearch</ShortName>
   <Description>Here you can search inside an index which comes from a database.</Description>
   <Tags>ingrid server opensearch web</Tags>
-  <Contact>contact@wemove.com</Contact>
+  <Contact>portalu@portalu.de</Contact>
   <Url type="application/rss+xml" template="http://@PROXY_URL@/query?q={searchTerms}&amp;bbox={geo:box?}&amp;p={startPage?}&amp;h={count?}&amp;georss={ingridsearch:georss?}&amp;ingrid={ingridsearch:ingrid?}&amp;format=rss" />
+  <Query role="example" searchTerms="boden"/>
+  <Query role="example" searchTerms="wasser" ingridsearch:georss="1" ingridsearch:ingrid="1"/>
 </OpenSearchDescription>

@@ -239,16 +239,16 @@
             </executions>
         </plugin>
         <plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.2-beta-4</version>
-				<configuration>
-					<archive>
+			<artifactId>maven-assembly-plugin</artifactId>
+			<version>2.2-beta-4</version>
+			<configuration>
+				<archive>
 				    <manifestEntries>
-              <Upgrade-Type>Opensearch-Server</Upgrade-Type>
-            </manifestEntries>
-					</archive>
-				</configuration>
-			</plugin>
+                        <Upgrade-Type>Opensearch-Server</Upgrade-Type>
+                    </manifestEntries>
+				</archive>
+			</configuration>
+		</plugin>
     </plugins>
   </build>
 </project>
