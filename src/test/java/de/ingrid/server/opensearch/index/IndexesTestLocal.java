@@ -19,7 +19,7 @@ import de.ingrid.utils.PlugDescription;
 import de.ingrid.utils.dsc.Column;
 import de.ingrid.utils.xml.XMLSerializer;
 
-public class IndexesTest extends TestCase {
+public class IndexesTestLocal extends TestCase {
     private Connection fConnection;
 
     protected void setUp() throws Exception {

@@ -5,7 +5,7 @@ import de.ingrid.utils.query.IngridQuery;
 import de.ingrid.utils.query.TermQuery;
 import junit.framework.TestCase;
 
-public class OSSearcherTest extends TestCase {
+public class OSSearcherTestLocal extends TestCase {
 
     public final void testSearchIngridQueryIntInt() {
         OSSearcher searcher = new OSSearcher();
