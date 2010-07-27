@@ -9,6 +9,10 @@
     <fileSet>
       <directory>src/main/release/conf</directory>
       <outputDirectory>${project.build.finalName}/conf</outputDirectory>
+      <excludes>
+		<!-- copied to webapp, not included in conf -->
+        <exclude>log4j.properties</exclude>
+      </excludes>
     </fileSet>
     <fileSet>
       <directory>src/main/release/scripts</directory>
