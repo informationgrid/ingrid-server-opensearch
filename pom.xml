@@ -77,10 +77,6 @@
           <groupId>jetty</groupId>
           <artifactId>servlet-api</artifactId>
         </exclusion>
-        <exclusion>
-          <groupId>jetty</groupId>
-          <artifactId>org.mortbay.jetty</artifactId>
-        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
