@@ -8,11 +8,11 @@
   <groupId>de.ingrid</groupId>
   <artifactId>ingrid-server-opensearch</artifactId>
   <packaging>war</packaging>
-  <version>1.1.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <name>Ingrid Server OpenSearch</name>
   <scm>
-    <connection>scm:svn:https://harrison.its-technidata.de:444/svn/ingrid/ingrid-server-opensearch/trunk</connection>
-    <developerConnection>scm:svn:https://harrison.its-technidata.de:444/svn/ingrid/ingrid-server-opensearch/trunk</developerConnection>
+    <connection>scm:svn:https://harrison.its-technidata.de:444/svn/ingrid/ingrid-server-opensearch/tags/ingrid-server-opensearch-1.0.0</connection>
+    <developerConnection>scm:svn:https://harrison.its-technidata.de:444/svn/ingrid/ingrid-server-opensearch/tags/ingrid-server-opensearch-1.0.0</developerConnection>
   </scm>
 
   <dependencyManagement>
