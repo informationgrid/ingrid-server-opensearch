@@ -31,9 +31,13 @@
       <groupId>de.ingrid</groupId>
       <artifactId>ingrid-iplug-dsc</artifactId>
     </dependency>
+    <!-- WE NEED TO USE OLDER LIB FROM OPENSEARCH INTERFACE
+         SINCE 3.0.0 THE API CHANGED AND OTHER DATA IS RETURNED -->
     <dependency>
       <groupId>de.ingrid</groupId>
       <artifactId>ingrid-interface-opensearch</artifactId>
+      <!-- DO NOT USE VERSION >= 3.0.0!!! -->
+      <version>2.3.1</version>
       <exclusions>
         <exclusion>
           <groupId>de.ingrid</groupId>
