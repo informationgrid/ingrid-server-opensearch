@@ -35,9 +35,9 @@ if(mode.equals("descriptor")){
 		        <td colspan="3" class="tablehead" align="center">Menü</td>
 		    </tr>
 		    <tr>
-                <td class="tablecell"><a href="index.jsp?mode=descriptor"><input type="submit" value="Deskriptor anzeigen"/></a></td>
-                <td class="tablecell"><a href="index.jsp?mode=query"><input type="submit" value="Zur Suchabfrage"/></a></td>
-                <td class="tablecell"><a href="index.jsp?mode=admin"><input type="submit" value="Zur Adminoberfläche"/></a></td>
+                <td class="tablecell"><a href="index.jsp?mode=descriptor"><input type="button" value="Deskriptor anzeigen"/></a></td>
+                <td class="tablecell"><a href="index.jsp?mode=query"><input type="button" value="Zur Suchabfrage"/></a></td>
+                <td class="tablecell"><a href="index.jsp?mode=admin"><input type="button" value="Zur Adminoberfläche"/></a></td>
 		    </tr>
 		</table>
 	</form>
