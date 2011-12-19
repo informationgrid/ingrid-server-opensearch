@@ -55,8 +55,8 @@ if(mode.equals("editall")){
 		        <td colspan="2" class="tablehead" align="center">Auswahl</td>
 		    </tr>
 		    <tr>
-		        <td class="tablecell"><a href="index.jsp?mode=editall"><input type="submit" value="Alle Einstellungen bearbeiten"/></a></td>
-		        <td class="tablecell"><a href="index.jsp?mode=reindex"><input type="submit" value="Nur Zeitsteuerung bearbeiten / sofortige Neuindizierung"/></a></td>
+		        <td class="tablecell"><a href="index.jsp?mode=editall"><input type="button" value="Alle Einstellungen bearbeiten"/></a></td>
+		        <td class="tablecell"><a href="index.jsp?mode=reindex"><input type="button" value="Nur Zeitsteuerung bearbeiten / sofortige Neuindizierung"/></a></td>
 		    </tr>
 		</table>
 	</form>

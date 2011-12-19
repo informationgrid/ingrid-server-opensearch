@@ -12,6 +12,9 @@
       <action type="fix" dev="wemove">
         Start page was not redirecting to button links for some browsers under windows. 
       </action>
+      <action type="fix" dev="wemove">
+        Fix index file locking problem when re-indexing under windows. 
+      </action>
     </release>  
     <release version="3.1.0" date="2011-09-15" description="Release InGrid 3.1">
       <action type="fix" issue="INGRID-1992">

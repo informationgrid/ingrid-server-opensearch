@@ -120,10 +120,10 @@ public class OpensearchServerServlet extends HttpServlet {
                 osSearcher.configure(PlugServer.getPlugDescription("conf/plugdescription.xml"));
     		}
     	} catch (final IOException e) {
-			log.error("IOException ocurred: " + e.getMessage());
+			log.error("IOException ocurred.", e);
 			osSearcher = null;
 		} catch (final Exception e) {
-		    log.error("Exception ocurred: " + e.getMessage());
+		    log.error("Exception ocurred.", e);
 			osSearcher = null;
 		}
     	return osSearcher;

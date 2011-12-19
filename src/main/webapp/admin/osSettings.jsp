@@ -74,7 +74,9 @@ private final String ERROR_PORT     = "error.port";
 			
 		    // write working directory into PD which is also needed for indexing
 		    PlugDescription  description = (PlugDescription) request.getSession().getAttribute("description");
-		    description.setWorkinDirectory(new File("index/"));
+		    description.setWorkinDirectory(new File("./"));
+            description.setIPlugClass("de.ingrid.server.opensearch.index.OSSearcher");
+
 		    //System.out.println("WorkingDir: " + (new File("index/")).getAbsolutePath());
 		    
 		    // redirect to the next page
