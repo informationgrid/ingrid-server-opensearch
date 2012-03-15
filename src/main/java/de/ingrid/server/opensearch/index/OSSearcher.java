@@ -8,7 +8,9 @@ package de.ingrid.server.opensearch.index;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.store.FSDirectory;
 
 import de.ingrid.iplug.dsc.index.AbstractSearcher;
 import de.ingrid.iplug.scheduler.SchedulingService;
@@ -59,8 +61,9 @@ public class OSSearcher extends AbstractSearcher {
 			log.debug("Use search index in: " + new File(plugDescription
 					.getWorkinDirectory(), "index").getAbsolutePath());
 		}
-		this.fSearcher = new IndexSearcher(new File(plugDescription
-				.getWorkinDirectory(), "index").getAbsolutePath());
+		
+		this.fSearcher = new IndexSearcher(IndexReader.open(FSDirectory.open(new File(plugDescription
+                .getWorkinDirectory(), "index")), true));
 		
 		this.fScheduler = new SchedulingService(new File(plugDescription.getWorkinDirectory(), "jobstore"));
 	}
@@ -96,16 +99,14 @@ public class OSSearcher extends AbstractSearcher {
 		
 		return ingridHits;
 	}
-
 	
 
 	public void close() throws Exception {
-		//if (this.fDetailer != null) {
-		//	this.fDetailer.close();
-		//}
-		if (this.fSearcher != null) {
-			this.fSearcher.close();
-		}
+        if (this.fSearcher != null) {
+            this.fSearcher.getIndexReader().close();
+            this.fSearcher.close();
+            System.gc();
+        }
 		if (this.fScheduler != null) {
 			this.fScheduler.shutdown();
 		}
