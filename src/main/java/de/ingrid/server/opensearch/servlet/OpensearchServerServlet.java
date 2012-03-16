@@ -16,7 +16,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dom4j.Document;
 
-import de.ingrid.iplug.PlugServer;
 import de.ingrid.opensearch.util.RequestWrapper;
 import de.ingrid.server.opensearch.index.OSSearcher;
 import de.ingrid.server.opensearch.mapping.OpensearchMapper;
@@ -33,8 +32,6 @@ public class OpensearchServerServlet extends HttpServlet {
     private static final long serialVersionUID 	= 597250457306006899L;
 
     private final static Log log = LogFactory.getLog(OpensearchServerServlet.class);
-
-    private OSSearcher osSearcher = null;
 
     /**
      * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest,
@@ -56,7 +53,7 @@ public class OpensearchServerServlet extends HttpServlet {
         response.setContentType("text/xml");
         response.setCharacterEncoding("UTF-8");
 
-        final OSSearcher searcher = getSearcher();
+        OSSearcher osSearcher = OSSearcher.getInstance();
 
         if (osSearcher == null) {
         	// redirect or show error page or empty result
@@ -74,7 +71,7 @@ public class OpensearchServerServlet extends HttpServlet {
 
         try {
 			// Hits also need Details which has title and summary!!!
-			hits = searcher.searchAndDetails(reqWrapper.getQuery(), startHit, reqWrapper.getHitsPerPage());
+			hits = osSearcher.searchAndDetails(reqWrapper.getQuery(), startHit, reqWrapper.getHitsPerPage());
 		} catch (final Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -112,20 +109,4 @@ public class OpensearchServerServlet extends HttpServlet {
         doGet(request, response);
     }
 
-    private OSSearcher getSearcher() {
-    	try {
-    		if (osSearcher == null) {
-	    		osSearcher = new OSSearcher();
-	    		// get plugDescription info
-                osSearcher.configure(PlugServer.getPlugDescription("conf/plugdescription.xml"));
-    		}
-    	} catch (final IOException e) {
-			log.error("IOException ocurred.", e);
-			osSearcher = null;
-		} catch (final Exception e) {
-		    log.error("Exception ocurred.", e);
-			osSearcher = null;
-		}
-    	return osSearcher;
-    }
 }

@@ -36,12 +36,13 @@ public class OSSearcher extends AbstractSearcher {
 
 	private ProcessorPipe _processorPipe = new ProcessorPipe();
 	
+	
 
 	/**
-	 * Initilaizes the DSC searcher variant.
+	 * Initializes the opensearch searcher variant.
 	 */
 	public OSSearcher() {
-		// nothing to do here
+		super();
 	}
 
 	/**
@@ -51,6 +52,15 @@ public class OSSearcher extends AbstractSearcher {
 	 */
 	public OSSearcher(File file, String string) throws IOException {
 		super(file, string);
+	}
+	
+	public static OSSearcher getInstance() {
+		// this is a hack, since the AbstractSearcher is a singleton
+		// and the AbstractSearcher is used in Indexer.
+		if (fInstance == null) {
+			fInstance = new OSSearcher();
+		}
+		return (OSSearcher)fInstance;
 	}
 
 	public void configure(final PlugDescription plugDescription) throws Exception {
@@ -62,10 +72,24 @@ public class OSSearcher extends AbstractSearcher {
 					.getWorkinDirectory(), "index").getAbsolutePath());
 		}
 		
-		this.fSearcher = new IndexSearcher(IndexReader.open(FSDirectory.open(new File(plugDescription
-                .getWorkinDirectory(), "index")), true));
-		
+        if (this.fScheduler != null) {
+        	this.fScheduler.shutdown();
+        }
 		this.fScheduler = new SchedulingService(new File(plugDescription.getWorkinDirectory(), "jobstore"));
+
+		File indexDir = new File(plugDescription.getWorkinDirectory(), "index");
+		if (indexDir.exists()) {
+	        if (this.fSearcher != null) {
+	        	log.info("Close searcher: " + this.fSearcher);
+	        	this.fSearcher.getIndexReader().close();
+	        	this.fSearcher.close();
+	        	System.gc();
+	        }
+			this.fSearcher = new IndexSearcher(IndexReader.open(FSDirectory.open(indexDir), true));
+        	log.info("Created new searcher: " + this.fSearcher);
+		} else {
+			log.warn("Problem when configuring the Searcher. Probably no index available!?");
+		}
 	}
 
 	public IngridHits search(IngridQuery query, int start, int length)

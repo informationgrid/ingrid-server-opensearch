@@ -49,7 +49,7 @@ public class ContextListener implements ServletContextListener {
             beanFactory.addBean("pd_file", file);
             
             // init and start scheduler of DSC component
-            OSSearcher searcher = new OSSearcher();
+            OSSearcher searcher = OSSearcher.getInstance();
             final XMLSerializer serializer = new XMLSerializer();
             
             PlugDescription pd = (PlugDescription)serializer.deSerialize(file);
@@ -57,7 +57,7 @@ public class ContextListener implements ServletContextListener {
             try {
                 searcher.configure(pd);
             } catch (Exception e) {
-                LOG.error("Problem when configuring the Searcher. Probably no index available!?");
+                LOG.error("Problem when configuring the Searcher. Probably no index available!?", e);
             }
         } catch (final IOException e) {
             LOG.error("can not add plugdescription", e);
