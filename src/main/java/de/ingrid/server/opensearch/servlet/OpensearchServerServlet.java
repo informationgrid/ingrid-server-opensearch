@@ -81,7 +81,6 @@ public class OpensearchServerServlet extends HttpServlet {
         final OpensearchMapper mapper = (new SpringUtil("spring/spring.xml")).getBean("mapper", OpensearchMapper.class);
         final HashMap<String, Object> parameter = new HashMap<String, Object>();
         parameter.put(OpensearchMapper.REQUEST_WRAPPER, reqWrapper);
-        parameter.put(OpensearchMapper.HTTP_SERVLET_REQUEST, request);
 
         final Document doc = mapper.mapToXML(hits, parameter);
 
