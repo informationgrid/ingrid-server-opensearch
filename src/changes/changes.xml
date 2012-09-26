@@ -5,6 +5,11 @@
     <author email="andre.wallat@wemove.com">André Wallat</author>
   </properties>
   <body>
+    <release version="3.2.1" date="2012-09-26" description="Release InGrid 3.2.1">
+      <action type="update" dev="wemove">
+        Use latest opensearch-interface with bug fixes.
+      </action>
+    </release>
     <release version="3.2.0" date="2012-07-13" description="Release InGrid 3.2">
       <action type="update" dev="wemove" issue="INGRID-1885">
         Updated start.sh, which had an issue when being batch-invoked, deleted RSYNC which is no longer used, see https://dev.wemove.com/jira/browse/INGRID-1885
