@@ -2,13 +2,13 @@
   <parent>
     <artifactId>ingrid-releases-pom</artifactId>
     <groupId>de.ingrid</groupId>
-    <version>3.2.0</version>
+    <version>3.3.0</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>de.ingrid</groupId>
   <artifactId>ingrid-server-opensearch</artifactId>
   <packaging>war</packaging>
-  <version>3.3.0-SNAPSHOT</version>
+  <version>3.3.0-RELEASE-SNAPSHOT</version>
   <name>Ingrid Server OpenSearch</name>
   <scm>
     <connection>scm:svn:https://harrison.its-technidata.de:444/svn/ingrid/ingrid-server-opensearch/trunk</connection>
@@ -23,16 +23,6 @@
         <artifactId>ingrid-iplug-se</artifactId>
         <version>1.2.2</version>
       </dependency>
-      <dependency>
-    	<groupId>de.ingrid</groupId>
-    	<artifactId>ingrid-iplug-dsc</artifactId>
-    	<version>3.2.0</version>
-      </dependency>
-      <dependency>
-          <groupId>de.ingrid</groupId>
-          <artifactId>ingrid-interface-opensearch</artifactId>
-          <version>3.2.1</version>
-      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -41,8 +31,6 @@
       <groupId>de.ingrid</groupId>
       <artifactId>ingrid-iplug-dsc</artifactId>
     </dependency>
-    <!-- WE NEED TO USE OLDER LIB FROM OPENSEARCH INTERFACE
-         SINCE 3.0.0 THE API CHANGED AND OTHER DATA IS RETURNED -->
     <dependency>
       <groupId>de.ingrid</groupId>
       <artifactId>ingrid-interface-opensearch</artifactId>
