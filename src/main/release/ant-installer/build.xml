@@ -1,31 +1,68 @@
-<project name="PortalU Installation">
+<project name="Opensearch Server Installation" basedir=".">
     <description>
         Opensearch Server Installation Script
     </description>
-	<!-- set global properties for this build -->
-	<property name="iPlugName" 			       value="${project.artifactId}-${project.version}"/>
-	<property name="xml-communication" 	   value="${installDir}/conf/communication.xml"/>
-	<property name="opensearch-properties" value="${installDir}/conf/ingrid-opensearch.properties"/>
-  <property name="plugdescription"       value="${installDir}/conf/plugdescription.xml"/>
-  <property name="xml-descriptor" 	      value="${installDir}/conf/descriptor.xml"/>
-	
-	<target name="extract" description="Extract all files to the installation directory.">
-		<unzip src="${antinstaller.jar}" dest="${installDir}">
-			<patternset>
-				<include name="${iPlugName}/**/*.*"/>
-			</patternset>
-		</unzip>
-		
-		<move toDir="${installDir}">
-			<fileset dir="${installDir}/${iPlugName}"/>
-		</move>
+    <!-- set global properties for this build -->
+    <property name="iPlugName"                 value="${project.artifactId}-${project.version}"/>
+    <property name="opensearch-properties" value="${installDir}/conf/ingrid-opensearch.properties"/>
+    <property name="plugdescription"       value="${installDir}/conf/plugdescription.xml"/>
+    <property name="xml-descriptor"           value="${installDir}/conf/descriptor.xml"/>
+
+    <!-- THESE PORPERTIES ARE NECESSARY FOR UPDATES -->
+    <property name="libraryDir"         value="jetty/webapps/ROOT/WEB-INF/lib" />
+    <property name="libraryIdent"       value="ingrid-server-opensearch-" />
+    <!-- <property name="libraryIdent"       value="MANIFEST.MF" /> -->
+    <property name="versionsWithConfigurations"  value="" />
+    <property name="minSupportedVersion" value="3.3.0" />
+
+    <import file="build-installer-utils.xml"  as="utils" />
+    <import file="build-patch.xml"            as="patch" />
+
+    <target name="setUpdateProperty" depends="checkPreconditionsForUpdate, extractUpdate">
+        <property name="installType" value="update" />
+        <property name="updateProcedure" value="true" />
+    </target>
     
-    <!-- logs-dir needs to be created since server will complain about a missing one later -->
-    <mkdir dir="${installDir}/logs"/>
-	</target>
-	
-	<target name="config" description="Configure the file ingrid-opensearch.properties">
-		<echo>Schreibe OpenSearch Konfiguration in ingrid-opensearch.properties</echo>
+    <target name="setInstallProperty" depends="extract">
+        <property name="installProcedure" value="true" />
+    </target>
+    
+    <target name="extract" description="Extract all files to the installation directory.">
+        <unzip src="${antinstaller.jar}" dest="${installDir}">
+            <patternset>
+                <include name="${iPlugName}/**/*.*"/>
+            </patternset>
+        </unzip>
+        
+        <move toDir="${installDir}">
+            <fileset dir="${installDir}/${iPlugName}"/>
+        </move>
+    
+        <!-- logs-dir needs to be created since server will complain about a missing one later -->
+        <mkdir dir="${installDir}/logs"/>
+    </target>
+
+    <target name="extractUpdate">
+        <unzip src="${antinstaller.jar}" dest=".">
+            <patternset>
+                <include name="**/*.*"/>
+                <exclude name="${iPlugName}/conf/ingrid-opensearch.properties" />
+                <exclude name="${iPlugName}/conf/plugdescription.xml" />
+                <exclude name="${iPlugName}/conf/descriptor.xml" />
+            </patternset>
+        </unzip>
+        
+        <delete>
+            <fileset dir="${installDir}/lib" includes="**/*"/>
+        </delete>
+        
+        <move toDir="${installDir}">
+            <fileset dir="./${iPlugName}"/>
+        </move>
+    </target>
+    
+    <target name="config" description="Configure the file ingrid-opensearch.properties">
+        <echo>Schreibe OpenSearch Konfiguration in ingrid-opensearch.properties</echo>
     <replace file="${opensearch-properties}" token="@LOCAL_SERVER_PORT@"    value="${localServerPort}"/>
     <replace file="${opensearch-properties}" token="@MAX_REQUESTED_HITS@"   value="${maxRequestedHits}"/>
     <replace file="${opensearch-properties}" token="@PROXY_URL@"            value="http://${externalInterfaceHost}:${externalInterfacePort}/${externalInterfacePath}"/>
@@ -36,17 +73,17 @@
     <replace file="${plugdescription}" token="@PASSWORD@"                   value="${adminPassword}"/>
     
     <echo>Schreibe Deskriptor-Server</echo>
-		<replace file="${xml-descriptor}" token="@PROXY_URL@" value="${externalInterfaceHost}:${externalInterfacePort}/${externalInterfacePath}"/>
-	</target>
-	
-	<target name="info">
-		<echo>
+        <replace file="${xml-descriptor}" token="@PROXY_URL@" value="${externalInterfaceHost}:${externalInterfacePort}/${externalInterfacePath}"/>
+    </target>
+    
+    <target name="info">
+        <echo>
 =================
 Weiteres Vorgehen
 =================
 
-		</echo>
-		<echo>
+        </echo>
+        <echo>
 Gehen Sie ins Verzeichnis:
 ${installDir}
 und rufen sie von der Kommandozeile folgendes auf
@@ -60,7 +97,7 @@ Bitte lesen Sie bzgl. der Administration die Kapitel unter
 Weitere Informationen entnehmen Sie bitte dem
 Online-Handbuch unter 
 http://www.kst.portalu.de/wiki/index.php/InGrid_Installation.
-		</echo>
-	</target>
-	
+        </echo>
+    </target>
+    
 </project>
