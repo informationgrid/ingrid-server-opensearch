@@ -53,7 +53,7 @@
         </unzip>
         
         <delete>
-            <fileset dir="${installDir}/lib" includes="**/*"/>
+            <fileset dir="${installDir}/jetty/webapps/ROOT/WEB-INF/lib" includes="**/*"/>
         </delete>
         
         <move toDir="${installDir}">
