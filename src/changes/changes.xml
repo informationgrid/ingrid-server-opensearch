@@ -5,6 +5,15 @@
     <author email="andre.wallat@wemove.com">André Wallat</author>
   </properties>
   <body>
+    <release version="3.4.0" date="2014-02-25" description="Release InGrid 3.4.0">
+      <action type="update" dev="wemove">
+        Added updated strategy for easier installation.
+      </action>
+      <action type="fix" dev="wemove">
+        Fixed removal of old lib directory during update.
+      </action>
+    </release>
+
     <release version="3.3.0" date="2013-03-05" description="Release InGrid 3.3">
       <action type="update" dev="wemove">
         Use most current dependencies (jars)!
