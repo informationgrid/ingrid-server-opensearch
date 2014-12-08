@@ -48,6 +48,14 @@
           <artifactId>ingrid-iplug-admin-step2-tamino</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>de.ingrid</groupId>
+          <artifactId>ingrid-iplug-tamino</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>de.ingrid</groupId>
+          <artifactId>ingrid-iplug-fpn</artifactId>
+        </exclusion>
+        <exclusion>
           <groupId>opensymphony</groupId>
           <artifactId>quartz</artifactId>
         </exclusion>
