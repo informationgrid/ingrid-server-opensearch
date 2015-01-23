@@ -29,11 +29,8 @@
   <dependencies>
     <dependency>
       <groupId>de.ingrid</groupId>
-      <artifactId>ingrid-iplug-dsc</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>de.ingrid</groupId>
       <artifactId>ingrid-interface-opensearch</artifactId>
+      <version>3.3.0</version>
       <exclusions>
         <exclusion>
           <groupId>de.ingrid</groupId>
