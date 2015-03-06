@@ -2,7 +2,7 @@
   <parent>
     <artifactId>ingrid-releases-pom</artifactId>
     <groupId>de.ingrid</groupId>
-    <version>3.5.0</version>
+    <version>3.5.1</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>de.ingrid</groupId>
@@ -15,22 +15,28 @@
     <developerConnection>scm:git:git@github.com:informationgrid/ingrid-server-opensearch.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
-
   <dependencyManagement>
     <dependencies>
-<!-- Use old iPlug SE, just needed for instanceof. New iPlug SE does not have a jar file! -->
+      <dependency>
+        <groupId>de.ingrid</groupId>
+        <artifactId>ingrid-version-management-pom</artifactId>
+        <version>3.6.0-SNAPSHOT</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!-- Use old iPlug SE, just needed for instanceof. New iPlug SE does not have a jar file! -->
       <dependency>
         <groupId>de.ingrid</groupId>
         <artifactId>ingrid-iplug-se</artifactId>
         <version>3.3.0</version>
-      </dependency><dependency>
+      </dependency>
+      <dependency>
         <groupId>de.ingrid</groupId>
         <artifactId>ingrid-iplug-dsc</artifactId>
         <version>3.2.0</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
-
   <dependencies>
     <dependency>
       <groupId>de.ingrid</groupId>
@@ -114,12 +120,8 @@
       <version>6.1.14</version>
       <scope>provided</scope>
     </dependency>
-<!--
-    <dependency>
-      <groupId>jetty</groupId>
-      <artifactId>servlet-api</artifactId>
-    </dependency>
--->
+    <!--
+    <dependency><groupId>jetty</groupId><artifactId>servlet-api</artifactId></dependency>-->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -144,98 +146,104 @@
         </configuration>
       </plugin>
       <plugin>
-          <groupId>org.mortbay.jetty</groupId>
-          <artifactId>maven-jetty-plugin</artifactId>
-          <version>6.1.14</version>
-          <configuration>
-              <!--
+        <groupId>org.mortbay.jetty</groupId>
+        <artifactId>maven-jetty-plugin</artifactId>
+        <version>6.1.14</version>
+        <configuration>
+          <!--
                   give more memory with 'export MAVEN_OPTS="-Xmx1024M"' before
                   executing mvn jetty:run
               -->
-              <contextPath>/</contextPath>
-              <classesDirectory>target/classes</classesDirectory>
-              <scanTargets>
-                  <file>target/classes</file>
-              </scanTargets>
-              <connectors>
-                  <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-                      <port>8088</port>
-                      <maxIdleTime>60000</maxIdleTime>
-                  </connector>
-              </connectors>
-              <scanIntervalSeconds>2</scanIntervalSeconds>
-              <reload>manual</reload>
-          </configuration>
+          <contextPath>/</contextPath>
+          <classesDirectory>target/classes</classesDirectory>
+          <scanTargets>
+            <file>target/classes</file>
+          </scanTargets>
+          <connectors>
+            <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+              <port>8088</port>
+              <maxIdleTime>60000</maxIdleTime>
+            </connector>
+          </connectors>
+          <scanIntervalSeconds>2</scanIntervalSeconds>
+          <reload>manual</reload>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
         <executions>
-                <execution>
-                    <id>unzip-jetty</id>
-                    <phase>process-resources</phase>
-                    <goals>
-                        <goal>unpack</goal>
-                    </goals>
-                    <configuration>
-                        <artifactItems>
-                            <artifactItem>
-                                <groupId>jetty</groupId>
-                                <artifactId>jetty</artifactId>
-                                <version>6.1.14</version>
-                                <type>zip</type>
-                                <outputDirectory>
-                                    ${project.build.directory}/
-                                </outputDirectory>
-                            </artifactItem>
-                        </artifactItems>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
-        <plugin>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <executions>
-                <execution>
-                    <phase>package</phase>
-                    <configuration>
-                        <tasks>
-                            <delete includeemptydirs="true">
-                                <fileset dir="${project.build.directory}/jetty-6.1.14/webapps/" includes="**/*" excludes="ROOT/**/*" />
-                            </delete>
-                            <delete dir="${project.build.directory}/jetty-6.1.14/contrib" />
-                            <delete dir="${project.build.directory}/jetty-6.1.14/examples" />
-                            <delete dir="${project.build.directory}/jetty-6.1.14/project-website" />
-                            <delete dir="${project.build.directory}/jetty-6.1.14/patches" />
-                            <delete dir="${project.build.directory}/jetty-6.1.14/modules" />
-                            <delete dir="${project.build.directory}/jetty-6.1.14/javadoc" />
-                            <delete dir="${project.build.directory}/jetty-6.1.14/extras" />
-                            <delete dir="${project.build.directory}/jetty-6.1.14/jxr" />
-                            <delete dir="${project.build.directory}/jetty-6.1.14/distribution" />
-                            <delete file="${project.build.directory}/jetty-6.1.14/pom.xml" />
-                            <delete includeemptydirs="true">
-                                <fileset dir="${project.build.directory}/jetty-6.1.14/contexts" includes="**/*" />
-                            </delete>
-                            <unzip dest="${project.build.directory}/jetty-6.1.14/webapps/ROOT" src="${project.build.directory}/${project.build.finalName}.war">
-                            </unzip>
-                        </tasks>
-                    </configuration>
-                    <goals>
-                        <goal>run</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
-        <plugin>
-			<artifactId>maven-assembly-plugin</artifactId>
-			<configuration>
-				<archive>
-				    <manifestEntries>
-                        <ingridComponentType>SERVER_OPENSEARCH</ingridComponentType>
-                    </manifestEntries>
-				</archive>
-			</configuration>
-		</plugin>
+          <execution>
+            <id>unzip-jetty</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>jetty</groupId>
+                  <artifactId>jetty</artifactId>
+                  <version>6.1.14</version>
+                  <type>zip</type>
+                  <outputDirectory>${project.build.directory}/</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <configuration>
+              <tasks>
+                <delete includeemptydirs="true">
+                  <fileset dir="${project.build.directory}/jetty-6.1.14/webapps/" excludes="ROOT/**/*" includes="**/*"/>
+                </delete>
+                <delete dir="${project.build.directory}/jetty-6.1.14/contrib"/>
+                <delete dir="${project.build.directory}/jetty-6.1.14/examples"/>
+                <delete dir="${project.build.directory}/jetty-6.1.14/project-website"/>
+                <delete dir="${project.build.directory}/jetty-6.1.14/patches"/>
+                <delete dir="${project.build.directory}/jetty-6.1.14/modules"/>
+                <delete dir="${project.build.directory}/jetty-6.1.14/javadoc"/>
+                <delete dir="${project.build.directory}/jetty-6.1.14/extras"/>
+                <delete dir="${project.build.directory}/jetty-6.1.14/jxr"/>
+                <delete dir="${project.build.directory}/jetty-6.1.14/distribution"/>
+                <delete file="${project.build.directory}/jetty-6.1.14/pom.xml"/>
+                <delete includeemptydirs="true">
+                  <fileset dir="${project.build.directory}/jetty-6.1.14/contexts" includes="**/*"/>
+                </delete>
+                <unzip dest="${project.build.directory}/jetty-6.1.14/webapps/ROOT" src="${project.build.directory}/${project.build.finalName}.war"/>
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <ingridComponentType>SERVER_OPENSEARCH</ingridComponentType>
+            </manifestEntries>
+          </archive>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-installer</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 </project>
