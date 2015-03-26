@@ -167,18 +167,11 @@ startIplug()
   fi
   
   JAVA=$JAVA_HOME/bin/java
-  JAVA_HEAP_MAX=-Xmx128m
-  
-  # check envvars which might override default args
-  if [ "$INGRID_HEAPSIZE" != "" ]; then
-    JAVA_HEAP_MAX="-Xmx""$INGRID_HEAPSIZE""m"
-    echo "run with heapsize $JAVA_HEAP_MAX"
-  fi
 
-	INGRID_OPTS="$INGRID_OPTS -Dingrid_home=$INGRID_HOME"
+  INGRID_OPTS="$INGRID_OPTS -Dingrid_home=$INGRID_HOME -XX:+UseG1GC -XX:+UseStringDeduplication -XX:NewRatio=3"
 	
   # run it
-  exec nohup "$JAVA" $INGRID_HEAPSIZE $INGRID_OPTS -jar jetty/start.jar > console.log &
+  exec nohup "$JAVA" $INGRID_OPTS -jar jetty/start.jar > console.log &
   
   echo "jetty ($INGRID_HOME) started."
   echo $! > $PID
