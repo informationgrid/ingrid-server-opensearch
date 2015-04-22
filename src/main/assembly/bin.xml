@@ -58,6 +58,11 @@
       <directory>target/installer</directory>
       <outputDirectory>/</outputDirectory>
     </fileSet>
+    <fileSet>
+      <directory>target/installer/resources/scripts</directory>
+      <outputDirectory>${project.artifactId}-${project.version}/</outputDirectory>
+      <lineEnding>unix</lineEnding>
+    </fileSet>
     <!--<fileSet>
       <directory>target/jetty-6.1.14</directory>
       <outputDirectory>${project.artifactId}-${project.version}/</outputDirectory>
