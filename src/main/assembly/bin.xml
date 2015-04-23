@@ -60,7 +60,7 @@
     </fileSet>
     <fileSet>
       <directory>target/installer/resources/scripts</directory>
-      <outputDirectory>${project.artifactId}-${project.version}/</outputDirectory>
+      <outputDirectory>${project.build.finalName}/</outputDirectory>
       <lineEnding>unix</lineEnding>
     </fileSet>
     <!--<fileSet>
