@@ -197,7 +197,8 @@
         <artifactId>maven-antrun-plugin</artifactId>
         <executions>
           <execution>
-            <phase>package</phase>
+            <id>prepare-jetty</id>
+            <phase>prepare-package</phase>
             <configuration>
               <tasks>
                 <delete includeemptydirs="true">
@@ -216,7 +217,6 @@
                 <delete includeemptydirs="true">
                   <fileset dir="${project.build.directory}/jetty-6.1.14/contexts" includes="**/*"/>
                 </delete>
-                <unzip dest="${project.build.directory}/jetty-6.1.14/webapps/ROOT" src="${project.build.directory}/${project.build.finalName}.war"/>
               </tasks>
             </configuration>
             <goals>

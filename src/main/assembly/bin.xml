@@ -82,16 +82,13 @@
       <outputDirectory>${project.build.finalName}/jetty/etc/</outputDirectory>
     </file>
   </files>
-  <!--<dependencySets>
+  <dependencySets>
     <dependencySet>
-      <outputDirectory>${project.build.finalName}/lib</outputDirectory>
-      <unpack>false</unpack>
-      <scope>runtime</scope>
-      <excludes>
-        <exclude>de.ingrid:ingrid-installer</exclude>
-        <exclude>quartz:quartz</exclude>
-        <exclude>de.ingrid:ingrid-server-opensearch</exclude>
-      </excludes>
+      <outputDirectory>${project.build.finalName}/jetty/webapps/ROOT</outputDirectory>
+      <unpack>true</unpack>  
+      <includes>
+        <include>de.ingrid:ingrid-server-opensearch</include>
+      </includes>
     </dependencySet>
-  </dependencySets>-->
+  </dependencySets>
 </assembly>
