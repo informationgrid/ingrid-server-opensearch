@@ -44,7 +44,7 @@ RecordReader reader = new  RecordReader(construct, connection, schema, databaseC
 <%!
 public void renderTable (RecordReader reader, java.io.PrintWriter printWriter)throws Exception{
 	int count = 0;
-	//StringBuffer buffer = new StringBuffer();
+	//String buffer = new String();
 	Record record;
 	HashSet targetNamesSet = new java.util.HashSet();
 	
@@ -104,7 +104,7 @@ public void getValuesFromRecord(Record record, java.io.PrintWriter printWriter, 
 					if (value.length() > 100) {
 						value = value.substring(0,100)+" ...";
 					}
-					//buffer.append("<td bgcolor=\"#FFFFFF\">" +java.net.URLEncoder.encode(value) +"&nbsp;</td>");					
+					//buffer.concat("<td bgcolor=\"#FFFFFF\">" +java.net.URLEncoder.encode(value) +"&nbsp;</td>");					
 					hasValue = true;
 			}			
 		}

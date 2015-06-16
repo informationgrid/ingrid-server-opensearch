@@ -42,7 +42,7 @@
 
 
 <%!
-public String renderDetails (Record record, StringBuffer buffer)throws Exception{
+public String renderDetails (Record record, String buffer)throws Exception{
 	
 	CategorizedKeys catKeys = CategorizedKeys.get("/indexFieldNames.properties");
 	int num = record.numberOfColumns();
@@ -55,14 +55,14 @@ public String renderDetails (Record record, StringBuffer buffer)throws Exception
 		}
 
 		if(column.toIndex()){
-			buffer.append("<tr>");
-				buffer.append("<td bgcolor=\"#F4F4F4\" style=\"font-face:Arial;font-size:12pt\">");
-					buffer.append(fieldName+":");
-				buffer.append("</td>");
-				buffer.append("<td bgcolor=\"#F4F4F4\" style=\"font-face:Arial;font-size:12pt\">");
-					buffer.append(record.getValueAsString(column)+"&nbsp;");
-				buffer.append("</td>");
-			buffer.append("</tr>");
+			buffer.concat("<tr>");
+				buffer.concat("<td bgcolor=\"#F4F4F4\" style=\"font-face:Arial;font-size:12pt\">");
+					buffer.concat(fieldName+":");
+				buffer.concat("</td>");
+				buffer.concat("<td bgcolor=\"#F4F4F4\" style=\"font-face:Arial;font-size:12pt\">");
+					buffer.concat(record.getValueAsString(column)+"&nbsp;");
+				buffer.concat("</td>");
+			buffer.concat("</tr>");
 		}		
 	}	
 	
@@ -70,7 +70,7 @@ public String renderDetails (Record record, StringBuffer buffer)throws Exception
 	
 	if(subRecords != null && subRecords.length > 0){		
 		for(int j=0; j < subRecords.length; j++){
-			buffer.append("<tr><td colspan=\"2\">&nbsp;</td></tr>");
+			buffer.concat("<tr><td colspan=\"2\">&nbsp;</td></tr>");
 			renderDetails(subRecords[j], buffer);
 		}		
 	}
@@ -105,7 +105,7 @@ searcher.configure(description);
 Record record = searcher.getRecord(hit);
 
 
-StringBuffer buffer = new StringBuffer();
+String buffer = new String();
 %>
 	
 	<br />

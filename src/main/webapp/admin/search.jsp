@@ -54,9 +54,8 @@ if(!query.equals("")){
 %>
 
 <%!
-public String renderTable (Record record, StringBuffer buffer, String subrecordsParam) throws Exception{
+public String k (Record record, String buffer, String subrecordsParam) throws Exception{
 	// int count = 0;
-	//StringBuffer buffer = new StringBuffer();	
 	HashSet targetNamesSet = new java.util.HashSet();
 	int num = record.numberOfColumns();
 		for(int i=0; i < num; i++){
@@ -72,8 +71,8 @@ public String renderTable (Record record, StringBuffer buffer, String subrecords
 	return	buffer.toString();
 }
 
-public void renderHeader(Record record, StringBuffer buffer, HashSet targetNamesSet, String subrecordsParam){
-	buffer.append("<tr>");	
+public void renderHeader(Record record, String buffer, HashSet targetNamesSet, String subrecordsParam){
+	buffer.concat("<tr>");	
 	java.util.Iterator itr = targetNamesSet.iterator();
 	
 	Record[] subRecords  = record.getSubRecords();
@@ -85,18 +84,18 @@ public void renderHeader(Record record, StringBuffer buffer, HashSet targetNames
 	
 	while (itr.hasNext()) {
 		String myTargetName = itr.next().toString();
-		buffer.append("<td style=\"background-color:#959595;color:#FFFFFF;font-weight:bold;width:"+columnWidth+"%\">");
-		buffer.append(myTargetName);
-		buffer.append("</td>");
+		buffer.concat("<td style=\"background-color:#959595;color:#FFFFFF;font-weight:bold;width:"+columnWidth+"%\">");
+		buffer.concat(myTargetName);
+		buffer.concat("</td>");
 	}
 	
 	if (subRecords!=null && subRecords.length > 0 && !subrecordsParam.equals("") ) {
-		buffer.append("<td style=\"background-color:#959595;color:#FFFFFF;font-weight:bold;width:"+columnWidth+"%\">Subrecords (1:n)</td>");
+		buffer.concat("<td style=\"background-color:#959595;color:#FFFFFF;font-weight:bold;width:"+columnWidth+"%\">Subrecords (1:n)</td>");
 	}
-	buffer.append("</tr>");	
+	buffer.concat("</tr>");	
 }
 
-public void getValuesFromRecord(Record record, StringBuffer buffer, HashSet targetNamesSet) {
+public void getValuesFromRecord(Record record, String buffer, HashSet targetNamesSet) {
 	java.util.Iterator itr = targetNamesSet.iterator();	
 	while (itr.hasNext()) {
 		String myTargetName = itr.next().toString();
@@ -111,27 +110,27 @@ public void getValuesFromRecord(Record record, StringBuffer buffer, HashSet targ
 					if (value.length() > 100) {
 						value = value.substring(0,100)+" ...";
 					}
-					buffer.append("<td bgcolor=\"#FFFFFF\">" +value +"&nbsp;</td>");
+					buffer.concat("<td bgcolor=\"#FFFFFF\">" +value +"&nbsp;</td>");
 					hasValue = true;
 			}			
 		}
 		
 		if (hasValue == false){				
-			buffer.append("<td bgcolor=\"#FFFFFF\">&nbsp;-&nbsp;</td>");
+			buffer.concat("<td bgcolor=\"#FFFFFF\">&nbsp;-&nbsp;</td>");
 		}
 		
 	}
 }
 
-public void renderRow(Record record, StringBuffer buffer, HashSet targetNamesSet, String subrecordsParam) {
-	buffer.append("<tr>");	
+public void renderRow(Record record, String buffer, HashSet targetNamesSet, String subrecordsParam) {
+	buffer.concat("<tr>");	
 	
 	getValuesFromRecord(record, buffer, targetNamesSet);
 	
 	Record[] subRecords  = record.getSubRecords();
 	if(subRecords!=null && subRecords.length > 0 && !subrecordsParam.equals("")){		
-		buffer.append("<td bgcolor=\"#FFFFFF\">");		
-		buffer.append("<table bgcolor=\"#F4F4F4\" cellpadding=\"2\" cellspacing=\"2\" style=\"border:1px solid #959595\"");
+		buffer.concat("<td bgcolor=\"#FFFFFF\">");		
+		buffer.concat("<table bgcolor=\"#F4F4F4\" cellpadding=\"2\" cellspacing=\"2\" style=\"border:1px solid #959595\"");
 		
 		HashSet subTargetNamesSet = new java.util.HashSet();
 		getSubrecordsTargetNames(record, buffer, subTargetNamesSet, subrecordsParam);		
@@ -144,13 +143,13 @@ public void renderRow(Record record, StringBuffer buffer, HashSet targetNamesSet
 			renderRow(oneRecord, buffer, subTargetNamesSet, subrecordsParam);			
 		}
 		
-		buffer.append("</table>");
-		buffer.append("</td>");
+		buffer.concat("</table>");
+		buffer.concat("</td>");
 	}
-	buffer.append("</tr>");
+	buffer.concat("</tr>");
 }
 
-public HashSet getSubrecordsTargetNames(Record record, StringBuffer buffer, HashSet subTargetNamesSet, String subrecordsParam) {
+public HashSet getSubrecordsTargetNames(Record record, String buffer, HashSet subTargetNamesSet, String subrecordsParam) {
 	//sub records
 	Record[] subRecords  = record.getSubRecords();
 
@@ -164,7 +163,7 @@ public HashSet getSubrecordsTargetNames(Record record, StringBuffer buffer, Hash
 				String targetName = column.getTargetName();				
 				if (column.toIndex() && !subTargetNamesSet.contains(targetName)) {
 					subTargetNamesSet.add(targetName);
-					buffer.append(targetName);
+					buffer.concat(targetName);
 				}
 			}
 		}

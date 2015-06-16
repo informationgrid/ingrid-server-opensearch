@@ -120,7 +120,7 @@ public static String MAPPING_ERROR = "mappingError";
 		if(error==null && construct==null){
 			DBSchemaController controller = new DBSchemaController(sqlConnection);
 			request.getSession().setAttribute("controller", controller);
-			System.out.println("schemas:" + java.util.Arrays.asList(controller.getSchemas()));
+//			System.out.println("schemas:" + java.util.Arrays.asList(controller.getSchemas()));
 			String[] schemas = controller.getSchemas();
 			if(schemas.length>0){
 				request.getSession().setAttribute("schemas", schemas);

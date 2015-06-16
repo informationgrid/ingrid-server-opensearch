@@ -108,109 +108,109 @@
 	
 	<%!
 	public String renderTable(Table table, String relationString, int level, int motherTableId, int relationId, HttpServletResponse response){
-		StringBuffer  buffer = new StringBuffer();
-		buffer.append("<table class=\"tableshort\" align=\"left\"");
+		String  buffer = new String();
+		buffer.concat("<table class=\"tableshort\" align=\"left\"");
 		if (level%2 == 1) {
-			buffer.append(" bgcolor=\"#EEFAFF\"");	
+			buffer.concat(" bgcolor=\"#EEFAFF\"");	
 		}else{
-			buffer.append(" bgcolor=\"#FFFFFF\"");
+			buffer.concat(" bgcolor=\"#FFFFFF\"");
 		}
-		buffer.append(">");
+		buffer.concat(">");
 
 		// delete Relation Button
 		if(table.getRelations().length == 0 && level > 0){
-			buffer.append("<tr><td align=\"center\">");
-			buffer.append("<form method=\"post\" action=\"");
-			buffer.append(response.encodeURL("deleteRelation.jsp"));
-			buffer.append("\">");
-			buffer.append("<input type=\"submit\" value=\"Relation l&#x00F6;schen\" class=\"button\"/>");
-			buffer.append("<input type=\"hidden\" name=\"tableId\" value=\"" +motherTableId +"\"/>");
-			buffer.append("<input type=\"hidden\" name=\"relationId\" value=\"" +relationId +"\"/>");								
-			buffer.append("</form>");
-			buffer.append("</td></tr>");
+			buffer.concat("<tr><td align=\"center\">");
+			buffer.concat("<form method=\"post\" action=\"");
+			buffer.concat(response.encodeURL("deleteRelation.jsp"));
+			buffer.concat("\">");
+			buffer.concat("<input type=\"submit\" value=\"Relation l&#x00F6;schen\" class=\"button\"/>");
+			buffer.concat("<input type=\"hidden\" name=\"tableId\" value=\"" +motherTableId +"\"/>");
+			buffer.concat("<input type=\"hidden\" name=\"relationId\" value=\"" +relationId +"\"/>");								
+			buffer.concat("</form>");
+			buffer.concat("</td></tr>");
 		}
 		
 		//		Print Relation
 		if (relationString != null){
-			buffer.append("<tr><td class=\"relation\">" +relationString +"</td></tr>");
+			buffer.concat("<tr><td class=\"relation\">" +relationString +"</td></tr>");
 		}
 		// Table Head
-		buffer.append("<tr><td class=\"tablehead\">"+table.getTableName()+"</td></tr>");
+		buffer.concat("<tr><td class=\"tablehead\">"+table.getTableName()+"</td></tr>");
 		// Columns of Table 		
 		Column[] columns = table.getColumns();
 		for (int i = 0; i < columns.length; i++) {
 			String columnName = columns[i].getColumnName();
-			buffer.append("<tr><td class=\"tablecell\">");
-			buffer.append(columnName);			
+			buffer.concat("<tr><td class=\"tablecell\">");
+			buffer.concat(columnName);			
 			//Filter
 			Filter[] filters = columns[i].getFilters();
 			
 			if(filters.length > 0){
 				for(int j=0; j<filters.length; j++){
 					Filter filter = filters[j];					
-					buffer.append("<form method=\"post\" action=\"");
-					buffer.append(response.encodeURL("deleteFilter.jsp"));
-					buffer.append("\">");
-					buffer.append("<input type=\"hidden\" name=\"columnId\" value=\""+columns[i].getId() +"\"/>");
-					buffer.append("<b>Filter: " +filter.getCompareSymbol() +" " +filter.getFilterValue() +"</b>&nbsp;");
+					buffer.concat("<form method=\"post\" action=\"");
+					buffer.concat(response.encodeURL("deleteFilter.jsp"));
+					buffer.concat("\">");
+					buffer.concat("<input type=\"hidden\" name=\"columnId\" value=\""+columns[i].getId() +"\"/>");
+					buffer.concat("<b>Filter: " +filter.getCompareSymbol() +" " +filter.getFilterValue() +"</b>&nbsp;");
 					if(columns[i].filterIsRequired() == true && j < filters.length-1){
-						buffer.append("UND&nbsp;&nbsp;");
+						buffer.concat("UND&nbsp;&nbsp;");
 					}
 					if(columns[i].filterIsRequired() == false && j < filters.length-1){
-						buffer.append("ODER&nbsp;&nbsp;");
+						buffer.concat("ODER&nbsp;&nbsp;");
 					}
-					buffer.append("<input type=\"hidden\" name=\"filterIndex\" value=\""+j+"\"/>");
-					buffer.append("<input type=\"image\" src=\"");
-					buffer.append(response.encodeURL("gfx/delete.gif"));
-					buffer.append("\" title=\"Filter l&#x00F6;schen\" border=\"0\"/>");
-					buffer.append("</form>");
+					buffer.concat("<input type=\"hidden\" name=\"filterIndex\" value=\""+j+"\"/>");
+					buffer.concat("<input type=\"image\" src=\"");
+					buffer.concat(response.encodeURL("gfx/delete.gif"));
+					buffer.concat("\" title=\"Filter l&#x00F6;schen\" border=\"0\"/>");
+					buffer.concat("</form>");
 				}	
 			}
 			//	show targetName if it is a field for index
 			if(columns[i].toIndex()){
-				buffer.append("<form method=\"post\" action=\"");
-				buffer.append(response.encodeURL("deleteFieldToIndex.jsp"));
-				buffer.append("\">");
-				buffer.append("<img src=\"");
-				buffer.append(response.encodeURL("gfx/okay.gif"));
-				buffer.append("\" border=\"0\" title=\"wird indiziert\" />");
-				buffer.append("<b>Index: " +columns[i].getTargetName() +"</b>&nbsp;");
-				buffer.append("<input type=\"hidden\" name=\"columnId\" value=\""+columns[i].getId() +"\"/>");
-				buffer.append("<input type=\"image\" src=\"");
-				buffer.append(response.encodeURL("gfx/delete.gif"));
-				buffer.append("\" title=\"Indexfeld l&#x00F6;schen\" border=\"0\"/>");
-				buffer.append("</form>");
+				buffer.concat("<form method=\"post\" action=\"");
+				buffer.concat(response.encodeURL("deleteFieldToIndex.jsp"));
+				buffer.concat("\">");
+				buffer.concat("<img src=\"");
+				buffer.concat(response.encodeURL("gfx/okay.gif"));
+				buffer.concat("\" border=\"0\" title=\"wird indiziert\" />");
+				buffer.concat("<b>Index: " +columns[i].getTargetName() +"</b>&nbsp;");
+				buffer.concat("<input type=\"hidden\" name=\"columnId\" value=\""+columns[i].getId() +"\"/>");
+				buffer.concat("<input type=\"image\" src=\"");
+				buffer.concat(response.encodeURL("gfx/delete.gif"));
+				buffer.concat("\" title=\"Indexfeld l&#x00F6;schen\" border=\"0\"/>");
+				buffer.concat("</form>");
 			}
 		
 			
-			buffer.append("</td></tr>");
+			buffer.concat("</td></tr>");
 		}				
-		buffer.append("<tr><td align=\"center\">");
+		buffer.concat("<tr><td align=\"center\">");
 		
 		// Filter Button
-		buffer.append("<form method=\"post\" action=\"");
-		buffer.append(response.encodeURL("addFilter.jsp"));
-		buffer.append("\">");
-		buffer.append("<input type=\"submit\" value=\"Filter hinzuf&#x00FC;gen\" class=\"button\"/>");
-		buffer.append("<input type=\"hidden\" name=\"tableId\" value=\"" +table.getId() +"\"/>");								
-		buffer.append("</form>");	
+		buffer.concat("<form method=\"post\" action=\"");
+		buffer.concat(response.encodeURL("addFilter.jsp"));
+		buffer.concat("\">");
+		buffer.concat("<input type=\"submit\" value=\"Filter hinzuf&#x00FC;gen\" class=\"button\"/>");
+		buffer.concat("<input type=\"hidden\" name=\"tableId\" value=\"" +table.getId() +"\"/>");								
+		buffer.concat("</form>");	
 		
 		// "weitere Tabellen" Button
-		buffer.append("<br /><form method=\"post\" action=\"");
-		buffer.append(response.encodeURL("addRelation.jsp"));
-		buffer.append("\" name=\"addRelation\">");				
-		buffer.append("<input style=\"font-size:x-small\" type=\"submit\" value=\"Weitere Tabelle mit dieser verkn&#x00FC;pfen\"/>");
-		buffer.append("<input type=\"hidden\" name=\"tableId\" value=\"" +table.getId() +"\"/>");
-		buffer.append("</form>&nbsp;");
+		buffer.concat("<br /><form method=\"post\" action=\"");
+		buffer.concat(response.encodeURL("addRelation.jsp"));
+		buffer.concat("\" name=\"addRelation\">");				
+		buffer.concat("<input style=\"font-size:x-small\" type=\"submit\" value=\"Weitere Tabelle mit dieser verkn&#x00FC;pfen\"/>");
+		buffer.concat("<input type=\"hidden\" name=\"tableId\" value=\"" +table.getId() +"\"/>");
+		buffer.concat("</form>&nbsp;");
 		
-		buffer.append("</td></tr>");
-		buffer.append("<tr><td align=\"center\">");
+		buffer.concat("</td></tr>");
+		buffer.concat("<tr><td align=\"center\">");
 		level = level +1; 
 		// Child Tables
 		Relation[] relations = table.getRelations();
-		buffer.append("<table><tr>");	
+		buffer.concat("<table><tr>");	
 		for(int i=0; i< relations.length; i++){
-				buffer.append("<td valign=\"top\">&nbsp;");
+				buffer.concat("<td valign=\"top\">&nbsp;");
 				Relation relation = relations[i];
 				Table rightTable = 	relation.getRightTable();
 				
@@ -222,11 +222,11 @@
 				}
 				relationString = "<div style=\"float:left\"><br />"+relationType+"</div>" +"<img src=\""+response.encodeURL("gfx/chainvertical.gif")+"\" align=\"left\"/>" +relation.getLeftColumn().toString() +" <br />=<br /> " +relation.getRightColumn().toString();
 				
-				buffer.append(renderTable(rightTable, relationString, level, table.getId(), relation.getId(), response));
-				buffer.append("&nbsp;<td>");
+				buffer.concat(renderTable(rightTable, relationString, level, table.getId(), relation.getId(), response));
+				buffer.concat("&nbsp;<td>");
 			}
-		buffer.append("</tr></table>");
-		buffer.append("</td></tr></table>");
+		buffer.concat("</tr></table>");
+		buffer.concat("</td></tr></table>");
 		return buffer.toString();	
 	}
 	%>
