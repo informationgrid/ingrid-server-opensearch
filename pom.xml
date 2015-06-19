@@ -8,12 +8,12 @@
   <groupId>de.ingrid</groupId>
   <artifactId>ingrid-server-opensearch</artifactId>
   <packaging>war</packaging>
-  <version>3.6.0-SNAPSHOT</version>
+  <version>3.6.0</version>
   <name>InGrid Server OpenSearch</name>
   <scm>
     <connection>scm:git:git@github.com:informationgrid/ingrid-server-opensearch.git</connection>
     <developerConnection>scm:git:git@github.com:informationgrid/ingrid-server-opensearch.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>ingrid-server-opensearch-3.6.0</tag>
   </scm>
   <dependencyManagement>
     <dependencies>
@@ -212,20 +212,20 @@
             <configuration>
               <tasks>
                 <delete includeemptydirs="true">
-                  <fileset dir="${project.build.directory}/jetty-6.1.14/webapps/" excludes="ROOT/**/*" includes="**/*"/>
+                  <fileset dir="${project.build.directory}/jetty-6.1.14/webapps/" excludes="ROOT/**/*" includes="**/*" />
                 </delete>
-                <delete dir="${project.build.directory}/jetty-6.1.14/contrib"/>
-                <delete dir="${project.build.directory}/jetty-6.1.14/examples"/>
-                <delete dir="${project.build.directory}/jetty-6.1.14/project-website"/>
-                <delete dir="${project.build.directory}/jetty-6.1.14/patches"/>
-                <delete dir="${project.build.directory}/jetty-6.1.14/modules"/>
-                <delete dir="${project.build.directory}/jetty-6.1.14/javadoc"/>
-                <delete dir="${project.build.directory}/jetty-6.1.14/extras"/>
-                <delete dir="${project.build.directory}/jetty-6.1.14/jxr"/>
-                <delete dir="${project.build.directory}/jetty-6.1.14/distribution"/>
-                <delete file="${project.build.directory}/jetty-6.1.14/pom.xml"/>
+                <delete dir="${project.build.directory}/jetty-6.1.14/contrib" />
+                <delete dir="${project.build.directory}/jetty-6.1.14/examples" />
+                <delete dir="${project.build.directory}/jetty-6.1.14/project-website" />
+                <delete dir="${project.build.directory}/jetty-6.1.14/patches" />
+                <delete dir="${project.build.directory}/jetty-6.1.14/modules" />
+                <delete dir="${project.build.directory}/jetty-6.1.14/javadoc" />
+                <delete dir="${project.build.directory}/jetty-6.1.14/extras" />
+                <delete dir="${project.build.directory}/jetty-6.1.14/jxr" />
+                <delete dir="${project.build.directory}/jetty-6.1.14/distribution" />
+                <delete file="${project.build.directory}/jetty-6.1.14/pom.xml" />
                 <delete includeemptydirs="true">
-                  <fileset dir="${project.build.directory}/jetty-6.1.14/contexts" includes="**/*"/>
+                  <fileset dir="${project.build.directory}/jetty-6.1.14/contexts" includes="**/*" />
                 </delete>
               </tasks>
             </configuration>
