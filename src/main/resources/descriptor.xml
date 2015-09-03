@@ -27,6 +27,6 @@
   <ShortName>InGrid Server OpenSearch</ShortName>
   <Description>Here you can search inside an index which comes from a database.</Description>
   <Tags>ingrid server opensearch web</Tags>
-  <Contact>contact@wemove.com</Contact>
+  <Contact>info@informationgrid.eu</Contact>
   <Url type="application/rss+xml" template="http://localhost/query?q={searchTerms}+datatype:default+ranking:score&amp;bbox={geo:box?}&amp;p={startPage?}&amp;h={count?}&amp;xml={ingridsearch:xml?}&amp;georss={ingridsearch:georss?}&amp;format=rss" />
 </OpenSearchDescription>

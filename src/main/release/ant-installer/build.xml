@@ -114,11 +114,7 @@ der folgenden Adresse "http://localhost:${localServerPort}"
 zu konfigurieren. Anstelle von localhost koennen Sie
 auch die IP-Adresse des Computers eingeben!
 Bitte lesen Sie bzgl. der Administration die Kapitel unter
-"http://www.kst.portalu.de/wiki/index.php/OpenSearch-Server".
-
-Weitere Informationen entnehmen Sie bitte dem
-Online-Handbuch unter 
-http://www.kst.portalu.de/wiki/index.php/InGrid_Installation.
+"http://www.ingrid-oss.eu".
         </echo>
     </target>
     
