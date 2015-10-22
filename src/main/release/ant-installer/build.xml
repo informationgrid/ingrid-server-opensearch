@@ -92,7 +92,15 @@
     <!-- <replace file="${opensearch-properties}" token="@ENABLE_CACHING@"       value="${enableCaching}"/>-->
     
     <echo>Schreibe Passwort</echo>
-    <replace file="${plugdescription}" token="@PASSWORD@"                   value="${adminPassword}"/>
+    <java classname="de.ingrid.iplug.PlugServer" fork="true" dir="${installDir}">
+        <arg value="--resetPassword" />
+        <arg value="${adminPassword}" />
+        <classpath>
+            <fileset dir="${installDir}/jetty/webapps/ROOT/WEB-INF/lib">
+               <include name="**/*.jar"/>
+            </fileset>
+        </classpath>
+    </java>
     
     <echo>Schreibe Deskriptor-Server</echo>
         <replace file="${xml-descriptor}" token="@PROXY_URL@" value="${externalInterfaceHost}:${externalInterfacePort}/${externalInterfacePath}"/>
