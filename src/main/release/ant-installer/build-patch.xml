@@ -33,7 +33,7 @@
                     <arg value="--migratePassword" />
                     <arg value="true" />
                     <classpath>
-                        <fileset dir="${installDir}/lib">
+                        <fileset dir="${installDir}/jetty/webapps/ROOT/WEB-INF/lib">
                            <include name="**/*.jar"/>
                         </fileset>
                     </classpath>
