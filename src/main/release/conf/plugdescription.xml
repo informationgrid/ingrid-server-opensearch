@@ -21,7 +21,9 @@
   **************************************************#
   -->
 <de.ingrid.utils.PlugDescription>
-  <int>1</int>
+  <int>2</int>
   <string>IPLUG_ADMIN_PASSWORD</string>
   <string>@PASSWORD@</string>
+  <string>iPlugClass</string>
+  <string>de.ingrid.server.opensearch.index.OSSearcher</string>
 </de.ingrid.utils.PlugDescription>
