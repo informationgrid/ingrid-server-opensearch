@@ -209,7 +209,7 @@ adminIplug()
   # so that filenames w/ spaces are handled correctly in loops below
   IFS=
   # add libs to CLASSPATH
-  for f in $INGRID_HOME/lib/*.jar; do
+  for f in $INGRID_HOME/jetty/webapps/ROOT/WEB-INF/lib/*.jar; do
     CLASSPATH=${CLASSPATH}:$f;
   done
   # restore ordinary behaviour
@@ -227,8 +227,6 @@ adminIplug()
   # run it
   exec nohup "$JAVA" $INGRID_OPTS $CLASS $PARAMETER > console.log &
   
-  echo "ingrid component ($INGRID_HOME) started."
-  echo $! > $PID
 }
 
 
