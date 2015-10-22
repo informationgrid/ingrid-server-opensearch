@@ -170,6 +170,68 @@ startIplug()
   echo $! > $PID
 }
 
+adminIplug()
+{
+  echo "Try starting ingrid component ($INGRID_HOME)..."
+  if [ -f $PID ]; then
+      procid=`cat $PID`
+      idcount=`ps -p $procid | wc -l`
+      if [ $idcount -eq 2 ]; then
+        echo plug running as process `cat $PID`.  Stop it first.
+        exit 1
+      fi
+  fi
+  
+  if [ -d "$INGRID_HOME/../repository/" ]; then
+    echo 'syncronize libs from repository...'
+    rsync -av --update --existing $INGRID_HOME/../repository/ $INGRID_HOME/lib/
+    echo 'finished syncronize.'
+  fi
+  
+  # some Java parameters
+  if [ "$INGRID_JAVA_HOME" != "" ]; then
+    #echo "run java in $INGRID_JAVA_HOME"
+    JAVA_HOME=$INGRID_JAVA_HOME
+  fi
+  
+  if [ "$JAVA_HOME" = "" ]; then
+    echo "Error: JAVA_HOME is not set."
+    exit 1
+  fi
+  
+  JAVA=$JAVA_HOME/bin/java
+
+  # CLASSPATH initially contains $INGRID_CONF_DIR, or defaults to $INGRID_HOME/conf
+  CLASSPATH=${CLASSPATH}:${INGRID_CONF_DIR:=$INGRID_HOME/conf}
+  CLASSPATH=${CLASSPATH}:$JAVA_HOME/lib/tools.jar
+  CLASSPATH=${CLASSPATH}:${INGRID_HOME}
+  
+  # so that filenames w/ spaces are handled correctly in loops below
+  IFS=
+  # add libs to CLASSPATH
+  for f in $INGRID_HOME/lib/*.jar; do
+    CLASSPATH=${CLASSPATH}:$f;
+  done
+  # restore ordinary behaviour
+  unset IFS
+  
+  # cygwin path translation
+  if expr `uname` : 'CYGWIN*' > /dev/null; then
+    CLASSPATH=`cygpath -p -w "$CLASSPATH"`
+  fi
+
+  export CLASSPATH="$CLASSPATH"
+  INGRID_OPTS="-Dingrid_home=$INGRID_HOME $INGRID_OPTS"
+  CLASS=de.ingrid.iplug.PlugServer
+
+  # run it
+  exec nohup "$JAVA" $INGRID_OPTS $CLASS $PARAMETER > console.log &
+  
+  echo "ingrid component ($INGRID_HOME) started."
+  echo $! > $PID
+}
+
+
 # make sure the current user has the privilege to execute that script
 if [ "$INGRID_USER" = "" ]; then
   INGRID_USER="ingrid"
@@ -207,8 +269,13 @@ case "$1" in
       echo "process is not running. Exit."
     fi
     ;;
+  resetPassword)
+    PARAMETER="--resetPassword $2"
+    adminIplug
+    echo "Resetted password to '$2' ... please restart iPlug."
+    ;;
   *)
-    echo "Usage: $0 {start|stop|restart|status}"
+    echo "Usage: $0 {start|stop|restart|status|resetPassword <newPassword>}"
     exit 1
     ;;
 esac

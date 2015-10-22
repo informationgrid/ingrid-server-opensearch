@@ -6893,7 +6893,7 @@
   <string>plugId</string>
   <string>146.140.211.11-udkdb_training</string>
   <string>IPLUG_ADMIN_PASSWORD</string>
-  <string>1p1ugAdm1n</string>
+  <string>$2a$10$ak1534iBHvHampkl94IMTup/S9DjNkzBz0CzamHWD4D2ZYK7fGv9e</string>
   <string>workingDirectory</string>
   <string>./</string>
   <string>dataSourceDescription</string>
