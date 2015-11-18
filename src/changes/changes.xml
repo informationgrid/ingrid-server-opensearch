@@ -28,6 +28,15 @@
     <author email="andre.wallat@wemove.com">André Wallat</author>
   </properties>
   <body>
+    <release version="3.6.1" date="2015-11-18" description="Release 3.6.1">
+      <action type="update" dev="wemove" issue="REDMINE-15">
+        Remove all references to PortalU.
+      </action>
+      <action type="update" dev="wemove" issue="REDMINE-106">
+        Use encrypted password for web interface.
+      </action>
+    </release>
+    
     <release version="3.6.0" date="2015-06-19" description="Release 3.6.0">
       <action type="fix" dev="wemove">
         Fixed incompatibilities with Java 8

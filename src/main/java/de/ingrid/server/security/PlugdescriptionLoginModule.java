@@ -29,6 +29,7 @@ import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import de.ingrid.utils.PlugDescription;
 import de.ingrid.utils.xml.PlugdescriptionSerializer;
@@ -47,7 +48,7 @@ public class PlugdescriptionLoginModule extends AbstractLoginModule {
             try {
                 plugDescription = new PlugdescriptionSerializer().deSerialize(file);
                 final String pwd = plugDescription.getIplugAdminPassword();
-                if (userName.equals("admin") && password.equals(pwd)) {
+                if (userName.equals("admin") && BCrypt.checkpw( password, pwd)) {
                     final Set<String> set = new HashSet<String>();
                     set.add("admin");
                     ingridPrincipal = new IngridPrincipal.KnownPrincipal("admin", pwd, set);

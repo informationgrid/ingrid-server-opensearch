@@ -2,13 +2,13 @@
   <parent>
     <artifactId>ingrid-releases-pom</artifactId>
     <groupId>de.ingrid</groupId>
-    <version>3.6.0</version>
+    <version>3.6.1</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>de.ingrid</groupId>
   <artifactId>ingrid-server-opensearch</artifactId>
   <packaging>war</packaging>
-  <version>3.6.1-SNAPSHOT</version>
+  <version>3.6.1</version>
   <name>InGrid Server OpenSearch</name>
   <scm>
     <connection>scm:git:git@github.com:informationgrid/ingrid-server-opensearch.git</connection>
@@ -17,13 +17,6 @@
   </scm>
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>de.ingrid</groupId>
-        <artifactId>ingrid-version-management-pom</artifactId>
-        <version>3.6.0</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
       <!-- Use old iPlug SE, just needed for instanceof. New iPlug SE does not have a jar file! -->
       <dependency>
         <groupId>de.ingrid</groupId>
@@ -81,6 +74,7 @@
     <dependency>
       <groupId>de.ingrid</groupId>
       <artifactId>ingrid-iplug</artifactId>
+      <version>3.6.1</version>
       <exclusions>
         <exclusion>
           <groupId>commons-betwixt</groupId>
@@ -113,6 +107,12 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
       <version>2.5.6</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-crypto</artifactId>
+      <!-- The version differs from base springframework! -->
+      <version>4.0.2.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>org.mortbay.jetty</groupId>
@@ -253,6 +253,15 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>external.atlassian.jgitflow</groupId>
+        <artifactId>jgitflow-maven-plugin</artifactId>
+        <version>1.0-m5.1</version>
+        <configuration>
+          <defaultOriginUrl>https://github.com/informationgrid/ingrid-server-opensearch</defaultOriginUrl>
+          <noDeploy>true</noDeploy>
+        </configuration>
       </plugin>
     </plugins>
   </build>

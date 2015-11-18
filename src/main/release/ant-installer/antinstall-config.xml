@@ -87,7 +87,7 @@
             displayText ="Einstellungen fuer den OpenSearch-Server (2)">
             
             <comment displayText="" explanatoryText="Um Detaildaten von IGC-Metadaten anzuzeigen, kann hier eine Basis-Url hinterlegt werden. Links für IGC Metadaten Details werden dann über diese URL realisiert."/>
-            <text property="metadataDetailsUrl"   displayText="URL für IGC Detaildaten:"   defaultValue="http://portalu.de/ingrid-portal/portal/search-detail.psml"/>
+            <text property="metadataDetailsUrl"   displayText="URL für IGC Detaildaten:"   defaultValue="http://www.informationgrid.eu/search-detail.psml"/>
             <comment displayText="" explanatoryText="Ergebniss von Anfragen werden für 5min im Cache gehalten."/>
             <!-- <checkbox property="enableCaching"   displayText="Caching:"   defaultValue="true"/>-->         
     </page>
