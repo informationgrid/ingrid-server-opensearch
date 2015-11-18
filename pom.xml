@@ -8,7 +8,7 @@
   <groupId>de.ingrid</groupId>
   <artifactId>ingrid-server-opensearch</artifactId>
   <packaging>war</packaging>
-  <version>3.6.1</version>
+  <version>3.6.2-SNAPSHOT</version>
   <name>InGrid Server OpenSearch</name>
   <scm>
     <connection>scm:git:git@github.com:informationgrid/ingrid-server-opensearch.git</connection>
