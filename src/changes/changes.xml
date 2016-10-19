@@ -28,11 +28,19 @@
     <author email="andre.wallat@wemove.com">André Wallat</author>
   </properties>
   <body>
+  
+    <release version="4.0.0.1-SNAPSHOT" date="2016-xx-xx" description="Release 4.0.0.1">
+      <action type="fix" dev="wemove" issue="REDMINE-465">
+        Fixed wrong path to save data when using cygwin.
+      </action>
+    </release>
+    
     <release version="3.6.2" date="2016-05-25" description="Release 3.6.2">
       <action type="update" dev="wemove">
         Use most current dependencies (communication, iplug jars).
       </action>
     </release>
+    
     
     <release version="3.6.1" date="2015-11-18" description="Release 3.6.1">
       <action type="update" dev="wemove" issue="REDMINE-15">
