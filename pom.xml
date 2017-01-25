@@ -2,13 +2,14 @@
   <parent>
     <artifactId>ingrid-releases-pom</artifactId>
     <groupId>de.ingrid</groupId>
-    <version>3.6.2</version>
+    <version>4.0.1</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>ingrid-server-opensearch</artifactId>
   <packaging>war</packaging>
-  <version>3.6.3-SNAPSHOT</version>
+  <version>4.0.1-SNAPSHOT</version>
   <name>InGrid Server OpenSearch</name>
+  <description>This component indexes all InGrid documents and offers them via an Opensearch interface.</description>
   <scm>
     <connection>scm:git:git@github.com:informationgrid/ingrid-server-opensearch.git</connection>
     <developerConnection>scm:git:git@github.com:informationgrid/ingrid-server-opensearch.git</developerConnection>
