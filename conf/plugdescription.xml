@@ -353,24 +353,6 @@
         </de.ingrid.utils.dsc.Column>
         <de.ingrid.utils.dsc.Column>
           <fTableName>t01_object</fTableName>
-          <fColumnName>data_language_key</fColumnName>
-          <fBoost>0.0</fBoost>
-          <fType>text</fType>
-          <fFilters/>
-          <fToIndex>false</fToIndex>
-          <fFilterIsRequired>false</fFilterIsRequired>
-        </de.ingrid.utils.dsc.Column>
-        <de.ingrid.utils.dsc.Column>
-          <fTableName>t01_object</fTableName>
-          <fColumnName>data_language_value</fColumnName>
-          <fBoost>0.0</fBoost>
-          <fType>text</fType>
-          <fFilters/>
-          <fToIndex>false</fToIndex>
-          <fFilterIsRequired>false</fFilterIsRequired>
-        </de.ingrid.utils.dsc.Column>
-        <de.ingrid.utils.dsc.Column>
-          <fTableName>t01_object</fTableName>
           <fColumnName>metadata_language_key</fColumnName>
           <fBoost>0.0</fBoost>
           <fType>text</fType>
@@ -536,7 +518,7 @@
   <list>
     <de.ingrid.iplug.dsc.index.DatabaseConnection>
       <fDriver>com.mysql.jdbc.Driver</fDriver>
-      <fConnectionurl>jdbc:mysql://localhost:3306/igc_test_vm</fConnectionurl>
+      <fConnectionurl>jdbc:mysql://localhost:3306/igc_test</fConnectionurl>
       <fUser>root</fUser>
       <fPassword></fPassword>
     </de.ingrid.iplug.dsc.index.DatabaseConnection>

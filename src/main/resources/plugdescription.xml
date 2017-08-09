@@ -277,17 +277,6 @@
         </de.ingrid.utils.dsc.Column>
         <de.ingrid.utils.dsc.Column>
           <fTableName>t01_object</fTableName>
-          <fColumnName>data_language_key</fColumnName>
-          <fTargetName>T01_object.data_language_key</fTargetName>
-          <fBoost>1.0</fBoost>
-          <fType>text</fType>
-          <fFilters/>
-          <fToIndex>true</fToIndex>
-          <fFilterIsRequired>false</fFilterIsRequired>
-          <fId>2425</fId>
-        </de.ingrid.utils.dsc.Column>
-        <de.ingrid.utils.dsc.Column>
-          <fTableName>t01_object</fTableName>
           <fColumnName>metadata_character_set</fColumnName>
           <fTargetName>t01_object.metadata_character_set</fTargetName>
           <fBoost>1.0</fBoost>
