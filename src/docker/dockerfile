@@ -14,6 +14,7 @@ RUN unzip ingrid-server-*-installer.jar -d /tmp \
 RUN ln -sf /dev/stdout /opt/ingrid/ingrid-server-opensearch/log.log
   # && ln -sf /dev/stderr /var/log/nginx/error.log
 
+RUN mkdir -p /opt/ingrid/ingrid-server-opensearch/logs
 WORKDIR /opt/ingrid/ingrid-server-opensearch
 EXPOSE 80
 
