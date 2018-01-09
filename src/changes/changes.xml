@@ -28,7 +28,13 @@
     <author email="andre.wallat@wemove.com">André Wallat</author>
   </properties>
   <body>
-  
+    
+    <release version="4.2.0" date="2018-01-09" description="Release 4.2.0">
+      <action type="add" dev="wemove">
+        Added docker integration.
+      </action>
+    </release>
+
     <release version="4.0.1" date="2016-02-01" description="Release 4.0.1">
       <action type="fix" dev="wemove" issue="REDMINE-465">
         Fixed wrong path to save data when using cygwin.
