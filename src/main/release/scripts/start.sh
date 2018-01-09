@@ -2,7 +2,7 @@
 # **************************************************-
 # Ingrid Server OpenSearch
 # ==================================================
-# Copyright (C) 2014 - 2017 wemove digital solutions GmbH
+# Copyright (C) 2014 - 2018 wemove digital solutions GmbH
 # ==================================================
 # Licensed under the EUPL, Version 1.1 or – as soon they will be
 # approved by the European Commission - subsequent versions of the
@@ -164,8 +164,12 @@ startIplug()
   INGRID_OPTS="-Dingrid_home=$INGRID_HOME $INGRID_OPTS"
   
   # run it
-  exec nohup "$JAVA" $INGRID_OPTS -jar jetty/start.jar > console.log &
-  
+  if [ "$RUN_DIRECTLY" ]; then
+    exec "$JAVA" $INGRID_OPTS -jar jetty/start.jar
+  else
+    exec nohup "$JAVA" $INGRID_OPTS -jar jetty/start.jar > console.log &
+  fi
+
   echo "jetty ($INGRID_HOME) started."
   echo $! > $PID
 }
@@ -226,8 +230,12 @@ adminIplug()
   CLASS=de.ingrid.iplug.PlugServer
 
   # run it
-  exec nohup "$JAVA" $INGRID_OPTS $CLASS $PARAMETER > console.log &
-  
+	if [ "$RUN_DIRECTLY" ]; then
+		exec "$JAVA" $INGRID_OPTS $CLASS $PARAMETER
+	else
+		exec nohup "$JAVA" $INGRID_OPTS $CLASS $PARAMETER > console.log &
+	fi
+
 }
 
 

@@ -2,12 +2,12 @@
   <parent>
     <artifactId>ingrid-releases-pom</artifactId>
     <groupId>de.ingrid</groupId>
-    <version>4.0.1</version>
+    <version>4.2.0</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>ingrid-server-opensearch</artifactId>
   <packaging>war</packaging>
-  <version>4.0.1</version>
+  <version>4.2.0</version>
   <name>InGrid Server OpenSearch</name>
   <description>This component indexes all InGrid documents and offers them via an Opensearch interface.</description>
   <scm>
@@ -18,11 +18,6 @@
   <dependencyManagement>
     <dependencies>
       <!-- Use old iPlug SE, just needed for instanceof. New iPlug SE does not have a jar file! -->
-      <dependency>
-        <groupId>de.ingrid</groupId>
-        <artifactId>ingrid-iplug-se</artifactId>
-        <version>3.3.0</version>
-      </dependency>
       <dependency>
         <groupId>de.ingrid</groupId>
         <artifactId>ingrid-iplug-dsc</artifactId>
@@ -44,6 +39,10 @@
         <exclusion>
           <groupId>de.ingrid</groupId>
           <artifactId>ingrid-iplug-admin-step1</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>de.ingrid</groupId>
+          <artifactId>ingrid-iplug-se</artifactId>
         </exclusion>
         <exclusion>
           <groupId>de.ingrid</groupId>
@@ -69,6 +68,17 @@
           <groupId>opensymphony</groupId>
           <artifactId>quartz</artifactId>
         </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>de.ingrid</groupId>
+      <artifactId>ingrid-iplug-se-iplug</artifactId>
+      <version>4.1.0</version>
+      <exclusions>
+      	<exclusion>
+      		<groupId>de.ingrid</groupId>
+      		<artifactId>ingrid-base-webapp</artifactId>
+      	</exclusion>
       </exclusions>
     </dependency>
     <dependency>
