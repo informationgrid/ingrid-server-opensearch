@@ -161,7 +161,7 @@ startIplug()
   
   JAVA=$JAVA_HOME/bin/java
 
-  INGRID_OPTS="-Dingrid_home=$INGRID_HOME $INGRID_OPTS"
+  INGRID_OPTS="-Dingrid_home=$INGRID_HOME $INGRID_OPTS $JAVA_OPTS"
   
   # run it
   if [ "$RUN_DIRECTLY" ]; then
