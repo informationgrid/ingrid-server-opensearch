@@ -2,7 +2,7 @@
 # **************************************************-
 # Ingrid Server OpenSearch
 # ==================================================
-# Copyright (C) 2014 - 2018 wemove digital solutions GmbH
+# Copyright (C) 2014 - 2020 wemove digital solutions GmbH
 # ==================================================
 # Licensed under the EUPL, Version 1.1 or – as soon they will be
 # approved by the European Commission - subsequent versions of the
@@ -161,7 +161,7 @@ startIplug()
   
   JAVA=$JAVA_HOME/bin/java
 
-  INGRID_OPTS="-Dingrid_home=$INGRID_HOME $INGRID_OPTS"
+  INGRID_OPTS="-Dingrid_home=$INGRID_HOME $INGRID_OPTS $JAVA_OPTS"
   
   # run it
   if [ "$RUN_DIRECTLY" ]; then
